@@ -20,7 +20,7 @@ $ du -hs ap_verify_hits2015
 
 If git-lfs is not properly installed/configured and in your ``PATH``, you'll end up with a failure message from the git clone command and your ``ap_verify_hits2015`` directory will only be a few MB in size. This recipe uses a version of the ``ap_verify_hits2015`` repo with most recent commit ``28e47907b485dbfea865de16639b9a8dde1b402a``.
 
-Now begin setting up the working directory within which you will stage the necessary pipeline inputs and write processing outputs. This can be a directory anywhere on your filesystem (with sufficient disk space), and does not need to be in any special location relative to where the ``ap_verify_hits2015`` repo was cloned to.
+Now begin setting up the working directory within which you will stage the necessary pipeline inputs and write processing outputs. This can be a directory anywhere on your filesystem (with sufficient disk space), and does not need to be in any special location relative to where the ``ap_verify_hits2015`` repo was cloned.
 
 Now we start setting up the Butler repository, which we will choose to be a directory called ``DATA``. Within your chosen working directory, do:
 
