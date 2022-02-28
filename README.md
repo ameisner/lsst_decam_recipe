@@ -36,7 +36,7 @@ source $INSTALL_DIR/loadLSST.bash
 setup lsst_distrib
 ```
 
-Where ``$INSTALL_DIR`` is the top-level path to the local v19_0_0 LSST pipeline installation. You can verify that your environment is set up with an LSST pipeline installation by running:
+Where ``$INSTALL_DIR`` is the top-level path to the local v19_0_0 LSST pipeline installation. You can verify that your environment is set up with v19_0_0 of the LSST pipeline by running:
 
 ```
 $ eups list lsst_distrib
