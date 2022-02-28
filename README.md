@@ -20,4 +20,9 @@ If git-lfs is not installed and in your ``PATH``, you'll end up with a failure m
 
 Now begin setting up the working directory you will use for staging the necessary inputs and writing outputs. This can be a directory anywhere on your filesystem (with sufficient disk space), and does not need to be in any special location relative to where the ``ap_verify_hits2015`` repo was cloned to.
 
-Now we start setting up the Butler repository, which we will choose to be a directory called ``DATA``:
+Now we start setting up the Butler repository, which we will choose to be a directory called ``DATA``. Within your chosen working directory, do:
+
+```
+mkdir DATA
+echo lsst.obs.decam.DecamMapper > DATA/_mapper
+```
