@@ -155,6 +155,15 @@ makeDiscreteSkyMap.py DATA --id object=Blind15A_40 --rerun processCcdOutputs:coa
 makeDiscreteSkyMap.py DATA --id object=Blind15A_42 --rerun processCcdOutputs:coadd_42 --config skyMap.projection="TAN"
 ```
 
-In the ``--rerun`` argument, we are "chaining" each field's coadd output to processCcdOutputs via the ``processCcdOutputs:coadd_??`` syntax.
+In the ``--rerun`` argument, we are "chaining" each field's coadd output to ``processCcdOutputs`` via the ``processCcdOutputs:coadd_??`` syntax. The above commands create new directories ``DATA/rerun/coadd_26``, ``DATA/rerun/coadd_40`` and ``DATA/rerun/coadd_42``. These sky maps each cover a small enough sky region that they will be just one "tract". The ``makeDiscreteSkyMap.py`` commands above also automatically figure out the number of coadd "patches" needed to cover the tract region. For instance, the last line of printed output from the first ``makeDiscreteSkyMap.py`` command above is:
+
+```
+makeDiscreteSkyMap INFO: tract 0 has corners (151.232, 1.103), (149.012, 1.103), (149.010, 3.322), (151.233, 3.322) (RA, Dec deg) and 6 x 6 patches
+```
+
+Which tells us that the tract has been broken up into a 6 x 6 grid of patches.
+
+
 
 ### running the alert pipeline
+
