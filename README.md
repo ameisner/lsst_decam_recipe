@@ -161,9 +161,7 @@ In the ``--rerun`` argument, we are "chaining" each field's coadd output to ``pr
 makeDiscreteSkyMap INFO: tract 0 has corners (151.232, 1.103), (149.012, 1.103), (149.010, 3.322), (151.233, 3.322) (RA, Dec deg) and 6 x 6 patches
 ```
 
-Which tells us that the tract has been broken up into a 6 x 6 grid of patches.
-
-
+Which tells us that the tract has been broken up into a 6 x 6 grid of patches. The above commands also make files called ``DATA/rerun/coadd_??/deepCoadd/skyMap.pickle``, which can be loaded and inspected to see various map projection parameters (particularly via the ``.config`` attribute of the DiscreteSkyMap object).
 
 ### running the alert pipeline
 
