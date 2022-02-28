@@ -125,7 +125,7 @@ for f in flist:
     os.rename(f, fname_new)
 ```
 
-### templates
+### per-CCD processing
 
 The ``ap_verify_hits2015`` repo does not contain templates in the Gen 2 (tract, patch) format that we need. Therefore we make our own templates, starting from the set of raw DECam exposures.
 
@@ -135,4 +135,16 @@ The first step toward making our templates is to calibrate all of the raw single
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -j 20 &> processCcd-all.log &
 ```
 
-The lack of constraints after the ``--id`` command line argument means that all CCDs will be processed. The ``--rerun`` argument specifies the subdirectory of ``DATA/rerun`` in which the outputs will be written (you don't need to manually create the ``DATA/rerun`` directory before running this ``processCcd`` command. The ``--j 20`` argument means that we will use 20 CPUs in order to get through this processing faster. For instance, on our group's server, this calibration of ~5,000 DECam CCDs with 20 CPUs took ~3 hours, meaning that a typical CCD took ~40-45 seconds to calibrate.
+The lack of constraints after the ``--id`` command line argument means that all CCDs will be processed. The ``--rerun`` argument specifies the subdirectory of ``DATA/rerun`` in which the outputs will be written (you don't need to manually create the ``DATA/rerun`` directory before running this ``processCcd`` command). The ``--j 20`` argument means that we will use 20 CPUs in order to get through this processing faster. For instance, on our group's server, this calibration of ~5,000 DECam CCDs with 20 CPUs took ~3 hours, meaning that a typical CCD took ~40-45 seconds to calibrate.
+
+The ``DATA/rerun/processCcdOutputs`` directory now has one output directory per exposure in this data set. Note that the total data volume of the ``DATA/rerun/processCcdOutputs`` outputs is 300+ GB!
+
+### building coadds from the calibrated CCDs
+
+Now that we have the calibrated CCDs, we need to assemble them into coadds. To do this, we follow the instructions at:
+
+https://pipelines.lsst.io/v/v19_0_0/getting-started/coaddition.html
+
+Which pertain to a sample HSC dataset, but can be very similarly applied to the DECam/HITS dataset.
+
+### running the alert pipeline
