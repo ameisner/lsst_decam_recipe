@@ -226,3 +226,22 @@ ap_pipe.py DATA --calib DATA/CALIB --rerun processed -c ppdb.isolation_level=REA
 Output information gets written to ``ppdb/association.db``, and also ``DATA/rerun/processed``. Note that EXPID = 411858 was chosen because it is an observation of the Blind15A_26 field.
 
 ### appendix: using the Butler sqlite3 database files
+
+When raw data are ingested, a database file called ``DATA/registry.sqlite3`` is created. Checking this database can be useful as a debugging tool and to explore the dataset. For instance:
+
+```
+$ sqlite3 DATA/registry.sqlite3 
+sqlite> .tables
+raw        raw_visit
+sqlite> select distinct FILTER from raw;
+g
+sqlite> select distinct OBJECT from raw;
+Blind15A_26
+Blind15A_40
+Blind15A_42
+sqlite> .header ON
+sqlite> select * from raw limit 2;
+id|visit|filter|date|taiObs|expTime|ccdnum|ccd|hdu|instcal|dqmask|wtmap|proposal|object
+1|410915|g|2015-02-17|2015-02-17T03:22:34.400354|86.0|25|25|1||||2015A-0608|Blind15A_26
+2|410915|g|2015-02-17|2015-02-17T03:22:34.400354|86.0|26|26|2||||2015A-0608|Blind15A_26
+```
