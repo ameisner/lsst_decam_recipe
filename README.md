@@ -53,7 +53,7 @@ The ``mode=link`` option means that our Butler repository will hold symlinks to 
 
 ### calibrations
 
-Now we need to bring the calibrations into our Butler repository. The calibration products considered here are the flats, biases and defect lists. We begin by making a base directory for calibrations within the Butler repo:
+Now we need to bring the calibrations into our Butler repository. The calibration products considered here are the flats, biases and defect lists. We begin by making a top-level directory for calibrations within the Butler repo:
 
 ```
 mkdir DATA/CALIB
