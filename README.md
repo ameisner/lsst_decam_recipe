@@ -85,7 +85,7 @@ Note that the defect lists are coming from the ``obs_decam_data`` repository wit
 
 ### reference catalogs
 
-Now we will set up our reference catalogs. Start by doing:
+Now we will set up our reference catalogs, which come from Pan-STARRS. Start by doing:
 
 ```
 mkdir DATA/ref_cats
