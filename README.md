@@ -27,7 +27,7 @@ mkdir DATA
 echo lsst.obs.decam.DecamMapper > DATA/_mapper
 ```
 
-Before running any of the Butler ingestion Python commands, we need to make sure our environment is set up to use the LSST
+Before running any of the Butler ingestion Python commands, we need to make sure our environment is set up to use the LSST pipelines:
 
 ```
 source $INSTALL_DIR/loadLSST.bash
