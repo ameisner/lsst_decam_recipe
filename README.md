@@ -78,3 +78,20 @@ ingestDefects.py DATA $INSTALL_DIR/stack/miniconda3-4.7.10-4d7b902/Linux64/obs_d
 ```
 
 Note that the defect lists are coming from the ``obs_decam_data`` repository within our LSST pipelines installation, rather than the ``ap_verify_hits2015`` repository. ``ingestDefects.py`` needs the defects to be in .ecsv text format (see [RFC-595](https://community.lsst.org/t/changes-to-how-defects-are-handled-implementation-of-rfc-595)), whereas the ``ap_verify_hits2015`` repo has a set of FITS files containing the defect lists.
+
+### reference catalogs
+
+Now we will set up our reference catalogs. Start by doing:
+
+```
+mkdir DATA/ref_cats
+```
+
+Now copy the actual reference catalog files from the ``ap_verify_hits2015`` repository to our Butler repository:
+
+```
+rsync -arv $DATA/ap_verify_hits2015/preloaded/refcats/gen2/panstarrs DATA/ref_cats
+mv DATA/ref_cats/panstarrs DATA/ref_cats/ps1_pv3_3pi_20170110
+```
+
+The default configuration for ``processCcd.py`` seems to require that the Pan-STARRS reference catalogs be in a directory called ``ps1_pv3_3pi_20170110`` rather than ``panstarrs``, hence the second ``mv`` command.
