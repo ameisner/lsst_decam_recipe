@@ -3,6 +3,8 @@
 
 This tutorial presumes that you have v19_0_0 of the LSST science pipelines installed. v19_0_0 is a so-called "Gen 2" version of the LSST pipeline.
 
+### initialization and raw data
+
 Download the raw DECam science images, flats, biases and Pan-STARRS reference catalogs from the ``ap_verify_hits2015`` repository using:
 
 ```
