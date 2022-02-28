@@ -35,4 +35,8 @@ ingestImagesDecam.py DATA --filetype raw $DATA/ap_verify_hits2015/raw/*.fz --mod
 
 The ``mode=link`` option means that our Butler repository will hold symlinks to the raw DECam data within the ``ap_verify_hits2015`` repo, rather than holding full copies of those files. The raw data symlinks show up within your Butler repository at ``DATA/2015-??-??/g/*.fz``.
 
-Now we need to bring the calibrations into our Butler repository. The calibration products considered here are the flats, biases and defects.
+Now we need to bring the calibrations into our Butler repository. The calibration products considered here are the flats, biases and defects. We begin by making a base directory for calibrations within the Butler repo:
+
+```
+mkdir DATA/CALIB
+```
