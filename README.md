@@ -245,3 +245,26 @@ id|visit|filter|date|taiObs|expTime|ccdnum|ccd|hdu|instcal|dqmask|wtmap|proposal
 1|410915|g|2015-02-17|2015-02-17T03:22:34.400354|86.0|25|25|1||||2015A-0608|Blind15A_26
 2|410915|g|2015-02-17|2015-02-17T03:22:34.400354|86.0|26|26|2||||2015A-0608|Blind15A_26
 ```
+
+Similarly, when calibrations are ingested, another database file called ```DATA/CALIB/calibRegistry.sqlite3``` is created. Inspecting this database can be useful. For instance, at one point when I was wrongly trying to ingest defect lists from FITS binary tables in ```ap_verify_hits2015``` repo, I noticed that the defects table within ```calibRegistry.sqlite3``` was empty.
+
+$ sqlite3 DATA/CALIB/calibRegistry.sqlite3 
+SQLite version 3.37.0 2021-11-27 14:13:22
+Enter ".help" for usage hints.
+sqlite> .header ON
+sqlite> tables
+   ...> 
+
+```
+$ sqlite3 DATA/CALIB/calibRegistry.sqlite3 
+sqlite> .tables
+bias            dark_visit      flat            fringe_visit  
+bias_visit      defects         flat_visit      illumcor      
+dark            defects_visit   fringe          illumcor_visit
+sqlite> .header ON
+sqlite> select * from defects limit 3;
+id|filter|ccdnum|calibDate|validStart|validEnd
+1|NONE|32|1970-01-01T00:00:00|1970-01-01|2013-01-14
+2|NONE|32|2013-01-15T01:30:00|2013-01-15|2013-09-15
+3|NONE|32|2013-09-16T09:26:00|2013-09-16|2014-01-16
+```
