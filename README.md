@@ -59,7 +59,7 @@ Now we need to bring the calibrations into our Butler repository. The calibratio
 mkdir DATA/CALIB
 ```
 
-Now get ready to ingest the actual flats and biases, by creating a simple directory containing all of the relevant image files:
+Now get ready to ingest the actual flats and biases, by creating a simple/single directory containing all of the relevant image files:
 
 ```
 mkdir flats_biases
