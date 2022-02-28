@@ -127,7 +127,7 @@ for f in flist:
 
 ### per-CCD processing
 
-The ``ap_verify_hits2015`` repo does not contain templates in the Gen 2 (tract, patch) format that we need. Therefore we make our own templates, starting from the set of raw DECam exposures.
+The ``ap_verify_hits2015`` repo does not appear to contain templates in the Gen 2 (tract, patch) format that we need. Therefore we make our own templates, starting from the set of raw DECam exposures.
 
 The first step toward making our templates is to calibrate all of the raw single-CCD images in our dataset using ``processCcd.py``.
 
