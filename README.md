@@ -94,4 +94,6 @@ rsync -arv $DATA/ap_verify_hits2015/preloaded/refcats/gen2/panstarrs DATA/ref_ca
 mv DATA/ref_cats/panstarrs DATA/ref_cats/ps1_pv3_3pi_20170110
 ```
 
-The default configuration for ``processCcd.py`` seems to require that the Pan-STARRS reference catalogs be in a directory called ``ps1_pv3_3pi_20170110`` rather than ``panstarrs``, hence the second ``mv`` command.
+The default configuration for ``processCcd.py`` seems to require that the Pan-STARRS reference catalogs be in a directory called ``ps1_pv3_3pi_20170110`` rather than ``panstarrs``, hence the second ``mv`` command. Note that the reference catalog rsync from ``ap_verify_hits2015`` brings in more than just the HTM shard star catalogs. It also brings in necessary files ``DATA/ref_cats/ps1_pv3_3pi_20170110/config.py`` and ``DATA/ref_cats/ps1_pv3_3pi_20170110/master_schema.fits``.
+
+The Pan-STARRS HTM shard file names as provided in the ``ap_verify_hits2015`` repo do not follow the default/expected naming convention when running ``processCcd.py``. In the ``ap_verify_hits2015`` repo, they have a naming convention ``panstarrs_??????_refcats_gen2.fits``, where ?????? is the HTM shard index. By default, ``processCcd.py`` expects the Pan-STARRS shard files to be named simply ``??????.fits``, where ?????? is the HTM shard index. 
