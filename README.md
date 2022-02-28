@@ -70,3 +70,9 @@ ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mod
 ```
 
 Possibly an appropriate regexp in the ``ingestCalibs.py`` command above would eliminate the need for copying the flat/bias FITS files into a staging directory called ``flats_biases`` as is done here.
+
+Next, we will ingest the defect lists for DECam.
+
+```
+ingestDefects.py DATA $LSST_INSTALL_DIR/stack/miniconda3-4.7.10-4d7b902/Linux64/obs_decam_data/19.0.0/decam/defects --calib DATA/CALIB
+```
