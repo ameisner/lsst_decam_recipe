@@ -26,3 +26,11 @@ Now we start setting up the Butler repository, which we will choose to be a dire
 mkdir DATA
 echo lsst.obs.decam.DecamMapper > DATA/_mapper
 ```
+
+Say that you cloned the ``ap_verify_hits2015`` repo within a base directory called ``$DATA``. Then you can bring the raw DECam data that we'll be working with into the Butler repository as follows:
+
+```
+ingestImagesDecam.py DATA --filetype raw $DATA/ap_verify_hits2015/raw/*.fz --mode=link
+```
+
+The ``mode=link`` option means that our Butler repository will hold symlinks to the raw DECam data within the ``ap_verify_hits2015`` repo, rather than holding full copies of those files.
