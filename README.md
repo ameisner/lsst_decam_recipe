@@ -100,7 +100,7 @@ mv DATA/ref_cats/panstarrs DATA/ref_cats/ps1_pv3_3pi_20170110
 
 The default configuration for ``processCcd.py`` seems to require that the Pan-STARRS reference catalogs be in a directory called ``ps1_pv3_3pi_20170110`` rather than ``panstarrs``, hence the ``mv`` command. 
 
-There are two additional necessary files for the reference catalogs: there needs to be a ``DATA/ref_cats/ps1_pv3_3pi_20170110/config.py`` and a ``DATA/ref_cats/ps1_pv3_3pi_20170110/master_schema.fits``. These files are not present in the ``ap_verify_hits2015`` repo, but they can be gathered from the ``testdata_ci_hsc`` repository used for the v19_0_0 pipeline tutorial based on sample HSC data:
+There are two additional necessary files for the reference catalogs: there needs to be a ``DATA/ref_cats/ps1_pv3_3pi_20170110/config.py`` and a ``DATA/ref_cats/ps1_pv3_3pi_20170110/master_schema.fits``. These files are not present in the ``ap_verify_hits2015`` repo, but they can be gathered from the ``testdata_ci_hsc`` repository used for the [v19_0_0 pipeline tutorial](https://pipelines.lsst.io/v/v19_0_0/getting-started/index.html#getting-started-tutorial) based on sample HSC data:
 
 https://github.com/lsst/testdata_ci_hsc
 https://github.com/lsst/testdata_ci_hsc/blob/f3c39b7aca3a779582da3df0ce7e6b46e7dbf001/ps1_pv3_3pi_20170110/config.py
