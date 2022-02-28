@@ -34,7 +34,12 @@ source $INSTALL_DIR/loadLSST.bash
 setup lsst_distrib
 ```
 
-Where ``$INSTALL_DIR`` is the top-level path to the local v19_0_0 LSST pipeline installation.
+Where ``$INSTALL_DIR`` is the top-level path to the local v19_0_0 LSST pipeline installation. You can verify that your environment is set up with an LSST pipeline installation by running:
+
+```
+$ eups list lsst_distrib
+   19.0.0+2   	current v19_0_0 setup
+```
 
 Say that you cloned the ``ap_verify_hits2015`` repo within a base directory called ``$DATA``. Then you can bring the raw DECam data that we'll be working with into the Butler repository as follows:
 
