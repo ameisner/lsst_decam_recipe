@@ -214,3 +214,5 @@ assembleCoadd.py DATA --rerun coadd_26 \
 Only the Blind15A_26 case is shown here. The per-patch coaddition outputs are written to files ``DATA/rerun/coadd_26/deepCoadd/g/0/*.fits``. There are 32 such files -- not every single patch ends up having CCDs that overlap with its footprint.
 
 ### running the alert pipeline
+
+### appendix: using the Butler sqlite3 database files
