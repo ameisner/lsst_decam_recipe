@@ -3,7 +3,7 @@
 
 This tutorial presumes that you have v19_0_0 of the LSST science pipelines installed.
 
-Download the raw DECam science images, flats, biases and Pan-STARRS reference catalogs from the ap_verify_hits2015 repository using:
+Download the raw DECam science images, flats, biases and Pan-STARRS reference catalogs from the ``ap_verify_hits2015`` repository using:
 
 git clone https://github.com/lsst/ap_verify_hits2015
 
