@@ -64,4 +64,4 @@ Then ingest the staged flats/biases into the Butler repo:
 ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mode=link
 ```
 
-Possibly an appropriate regexp in the ``ingestCalibs.py`` command above would eliminate the need for copying the flat/bias FITS files into a single directory called ``flats_biases`` as is done here.
+Possibly an appropriate regexp in the ``ingestCalibs.py`` command above would eliminate the need for copying the flat/bias FITS files into a staging directory called ``flats_biases`` as is done here.
