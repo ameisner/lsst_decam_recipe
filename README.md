@@ -98,7 +98,7 @@ rsync -arv $DATA/ap_verify_hits2015/preloaded/refcats/gen2/panstarrs DATA/ref_ca
 mv DATA/ref_cats/panstarrs DATA/ref_cats/ps1_pv3_3pi_20170110
 ```
 
-The default configuration for ``processCcd.py`` seems to require that the Pan-STARRS reference catalogs be in a directory called ``ps1_pv3_3pi_20170110`` rather than ``panstarrs``, hence the second ``mv`` command. 
+The default configuration for ``processCcd.py`` seems to require that the Pan-STARRS reference catalogs be in a directory called ``ps1_pv3_3pi_20170110`` rather than ``panstarrs``, hence the ``mv`` command. 
 
 There are two additional necessary files for the reference catalogs: there needs to be a ``DATA/ref_cats/ps1_pv3_3pi_20170110/config.py`` and a ``DATA/ref_cats/ps1_pv3_3pi_20170110/master_schema.fits``. These files are not present in the ``ap_verify_hits2015`` repo, but they can be gathered from the ``testdata_ci_hsc`` repository used for the v19_0_0 pipeline tutorial based on sample HSC data:
 
