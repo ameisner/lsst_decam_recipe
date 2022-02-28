@@ -9,7 +9,7 @@ Download the raw DECam science images, flats, biases and Pan-STARRS reference ca
 git clone https://github.com/lsst/ap_verify_hits2015
 ```
 
-For this to actually download all of the data, you need to have git-lfs installed and in your ``PATH``. You also need to have edited your ``~/.git-credentials`` and ``~/.git-credentials`` files according to https://pipelines.lsst.io/v/v19_0_0/install/git-lfs.html. If the download has worked correctly, you'll end up with 100 GB of data downloaded:
+For this to actually download all of the data, you need to have git-lfs installed and in your ``PATH``. You also need to have edited your ``~/.gitconfig`` and ``~/.git-credentials`` files according to https://pipelines.lsst.io/v/v19_0_0/install/git-lfs.html. If the download has worked correctly, you'll end up with 100 GB of data downloaded:
 
 ```
 $ du -hs ap_verify_hits2015
