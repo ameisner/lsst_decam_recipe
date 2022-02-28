@@ -182,7 +182,7 @@ makeCoaddTempExp.py DATA --rerun coadd_42 \
     --config doApplyUberCal=False doApplySkyCorr=False -j 20 &> makeCoaddTempExp_42.log &
 ```
 
-Specifying ``--filter=g`` is probably not needed due to the fact that all images in this sample data set are in g-band. Note that we're selecting input data by field with the ``object=Blind15A_42`` criterion for the ``--selectId`` argument. The first command runs all of the per-CCD warping in serial, while the second two use 20 CPUs in each case (``-j 20`` command line argument).
+Specifying ``--filter=g`` is probably not needed due to the fact that all images in this sample data set are in g-band. Note that we're selecting input data by field with the ``object=Blind15A_42`` criterion for the ``--selectId`` argument. The first command runs all of the per-CCD warping in serial, while the second and third use 20 CPUs in each case (``-j 20`` command line argument).
 
 The full list of patches needs to be explicitly specified, which feels somewhat clunky given that with 6 x 6 patches we have to specify 36 caret-separated pairs, where each pair gives the indices of a particular patch in the two-dimensional grid of patches (zero-indexed).
 
