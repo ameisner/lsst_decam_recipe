@@ -1,4 +1,4 @@
-## recipe for running the LSST ap_pipe pipeline on example DECam data from the HITS survey
+## recipe for running the LSST ``ap_pipe`` pipeline on example DECam data from the HITS survey
 ### February 2022
 
 This tutorial presumes that you have v19_0_0 of the LSST science pipelines installed. v19_0_0 is a so-called Gen2 version of the LSST pipeline.
