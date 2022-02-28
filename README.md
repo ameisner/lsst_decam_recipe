@@ -147,4 +147,14 @@ https://pipelines.lsst.io/v/v19_0_0/getting-started/coaddition.html
 
 Which pertain to a sample HSC dataset, but can be very similarly applied to the DECam/HITS dataset.
 
+This sample dataset contains three distinct fields (named Blind15A_26, Blind15A_40, Blind15A_42), so we make one template per field. The first step is to define the map projection that will be used for each reference template:
+
+```
+makeDiscreteSkyMap.py DATA --id object=Blind15A_26 --rerun processCcdOutputs:coadd_26 --config skyMap.projection="TAN"
+makeDiscreteSkyMap.py DATA --id object=Blind15A_40 --rerun processCcdOutputs:coadd_40 --config skyMap.projection="TAN"
+makeDiscreteSkyMap.py DATA --id object=Blind15A_42 --rerun processCcdOutputs:coadd_42 --config skyMap.projection="TAN"
+```
+
+In the ``--rerun`` argument, we are "chaining" each field's coadd output to processCcdOutputs via the ``processCcdOutputs:coadd_??`` syntax.
+
 ### running the alert pipeline
