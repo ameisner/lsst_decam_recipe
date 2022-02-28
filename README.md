@@ -9,12 +9,14 @@ Download the raw DECam science images, flats, biases and Pan-STARRS reference ca
 git clone https://github.com/lsst/ap_verify_hits2015
 ```
 
-For this to actually download all of the data, you need to have git-lfs installed and in your path. If this has worked correctly, you'll end up with 100 GB of data downloaded:
+For this to actually download all of the data, you need to have git-lfs installed and in your ``PATH``. If this has worked correctly, you'll end up with 100 GB of data downloaded:
 
 ```
 $ du -hs ap_verify_hits2015
 100G	ap_verify_hits2015
 ```
+
+If git-lfs is not installed and in your ``PATH``, you'll end up with a failure message from the git clone command and your ``ap_verify_hits2015`` directory will only be a few MB in size.
 
 Now begin setting up the working directory you will use for staging the necessary inputs and writing outputs. This can be a directory anywhere on your filesystem (with sufficient disk space), and does not need to be in any special location relative to where the ap_verify_hits2015 repo was cloned to.
 
