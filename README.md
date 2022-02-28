@@ -56,8 +56,12 @@ Now get ready to ingest the actual flats and biases, by creating a simple direct
 mkdir flats_biases
 rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpBias/cpBias*.fits flats_biases
 rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpFlat/g/*/cpFlat*.fits flats_biases
+```
 
+Then ingest the staged flats/biases into the Butler repo:
+
+```
 ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mode=link
 ```
 
-Possibly an appropriate regexp in the final command above would eliminate the need for copying the flat/bias FITS files into a single directory called ``flats_biases`` as is done here.
+Possibly an appropriate regexp in the ``ingestCalibs.py`` command above would eliminate the need for copying the flat/bias FITS files into a single directory called ``flats_biases`` as is done here.
