@@ -163,5 +163,31 @@ makeDiscreteSkyMap INFO: tract 0 has corners (151.232, 1.103), (149.012, 1.103),
 
 Which tells us that the tract has been broken up into a 6 x 6 grid of patches. The above commands also make files called ``DATA/rerun/coadd_??/deepCoadd/skyMap.pickle``, which can be loaded and inspected to see various map projection parameters (particularly via the ``.config`` attribute of the DiscreteSkyMap object).
 
-### running the alert pipeline
+The next step toward template coaddition is warping the calibrated CCD images onto the template sky map projection. This is accomplished via:
 
+```
+makeCoaddTempExp.py DATA --rerun coadd_26 \
+    --selectId filter=g object=Blind15A_26 \
+    --id filter=g tract=0 patch=0,0^0,1^0,2^0,3^0,4^0,5^1,0^1,1^1,2^1,3^1,4^1,5^2,0^2,1^2,2^2,3^2,4^2,5^3,0^3,1^3,2^3,3^3,4^3,5^4,0^4,1^4,2^4,3^4,4^4,5^5,0^5,1^5,2^5,3^5,4^5,5 \
+    --config doApplyUberCal=False doApplySkyCorr=False
+
+makeCoaddTempExp.py DATA --rerun coadd_40 \
+    --selectId filter=g object=Blind15A_40 \
+    --id filter=g tract=0 patch=0,0^0,1^0,2^0,3^0,4^0,5^1,0^1,1^1,2^1,3^1,4^1,5^2,0^2,1^2,2^2,3^2,4^2,5^3,0^3,1^3,2^3,3^3,4^3,5^4,0^4,1^4,2^4,3^4,4^4,5^5,0^5,1^5,2^5,3^5,4^5,5 \
+    --config doApplyUberCal=False doApplySkyCorr=False -j 20 &> makeCoaddTempExp_40.log &
+    
+makeCoaddTempExp.py DATA --rerun coadd_42 \
+    --selectId filter=g object=Blind15A_42 \
+    --id filter=g tract=0 patch=0,0^0,1^0,2^0,3^0,4^0,5^1,0^1,1^1,2^1,3^1,4^1,5^2,0^2,1^2,2^2,3^2,4^2,5^3,0^3,1^3,2^3,3^3,4^3,5^4,0^4,1^4,2^4,3^4,4^4,5^5,0^5,1^5,2^5,3^5,4^5,5 \
+    --config doApplyUberCal=False doApplySkyCorr=False -j 20 &> makeCoaddTempExp_42.log &
+```
+
+Specifying ``--filter=g`` is probably not needed due to the fact that all images in this sample data set are in g-band. Note that we're selecting input data by field with the ``object=Blind15A_42`` criterion for the ``--selectId`` argument. The first command runs all of the per-CCD warping in serial, while the second two use 20 CPUs in each case (``-j 20`` command line argument).
+
+The full list of patches needs to be explicitly specified, which feels somewhat clunky given that with 6 x 6 patches we have to specify 36 caret-separated pairs, where each pair gives the indices of a particular patch in the two-dimensional grid of patches (zero-indexed).
+
+Here's a small Python script that can generate these lists:
+
+
+
+### running the alert pipeline
