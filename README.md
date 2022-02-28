@@ -130,3 +130,9 @@ for f in flist:
 The ``ap_verify_hits2015`` repo does not contain templates in the Gen 2 (tract, patch) format that we need. Therefore we make our own templates, starting from the set of raw DECam exposures.
 
 The first step toward making our templates is to calibrate all of the raw single-CCD images in our dataset using ``processCcd.py``.
+
+```
+processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -j 20 &> processCcd-all.log &
+```
+
+The lack of constraints after the ``--id`` command line argument means that all CCDs will be processed. The ``--rerun`` argument specifies the subdirectory of ``DATA/rerun`` in which the outputs will be written. The ``--j 20`` argument means that we will use 20 CPUs in order to get through this processing faster. For instance, on our group's server, this calibration of ~5,000 DECam CCDs with 20 CPUs took ~3 hours, meaning that a typical CCD took ~40-45 seconds to calibrate.
