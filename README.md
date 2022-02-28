@@ -246,7 +246,7 @@ id|visit|filter|date|taiObs|expTime|ccdnum|ccd|hdu|instcal|dqmask|wtmap|proposal
 2|410915|g|2015-02-17|2015-02-17T03:22:34.400354|86.0|26|26|2||||2015A-0608|Blind15A_26
 ```
 
-Similarly, when calibrations are ingested, another database file called ```DATA/CALIB/calibRegistry.sqlite3``` is created. Inspecting this database can be useful. For instance, at one point when I was wrongly trying to ingest defect lists from FITS binary tables in ```ap_verify_hits2015``` repo, I noticed that the defects table within ```calibRegistry.sqlite3``` was empty.
+Similarly, when calibrations are ingested, another database file called ```DATA/CALIB/calibRegistry.sqlite3``` is created. Inspecting this database can be useful. For instance, at one point when I was wrongly trying to ingest defect lists from FITS binary tables in the ```ap_verify_hits2015``` repo, I noticed that the defects table within ```calibRegistry.sqlite3``` was empty.
 
 $ sqlite3 DATA/CALIB/calibRegistry.sqlite3 
 SQLite version 3.37.0 2021-11-27 14:13:22
