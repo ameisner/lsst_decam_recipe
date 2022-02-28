@@ -33,4 +33,4 @@ Say that you cloned the ``ap_verify_hits2015`` repo within a base directory call
 ingestImagesDecam.py DATA --filetype raw $DATA/ap_verify_hits2015/raw/*.fz --mode=link
 ```
 
-The ``mode=link`` option means that our Butler repository will hold symlinks to the raw DECam data within the ``ap_verify_hits2015`` repo, rather than holding full copies of those files.
+The ``mode=link`` option means that our Butler repository will hold symlinks to the raw DECam data within the ``ap_verify_hits2015`` repo, rather than holding full copies of those files. The raw data symlinks show up within your Butler repository at ``DATA/2015-??-??/g/*.fz``.
