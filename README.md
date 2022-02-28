@@ -43,7 +43,7 @@ $ eups list lsst_distrib
    19.0.0+2   	current v19_0_0 setup
 ```
 
-Say that you cloned the ``ap_verify_hits2015`` repo within a base directory called ``$DATA``. Then you can bring the raw DECam data that we'll be working with into the Butler repository as follows:
+Say that you cloned the ``ap_verify_hits2015`` repo within a directory called ``$DATA``. Then you can bring the raw DECam data that we'll be working with into the Butler repository as follows:
 
 ```
 ingestImagesDecam.py DATA --filetype raw $DATA/ap_verify_hits2015/raw/*.fz --mode=link
