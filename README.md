@@ -324,7 +324,6 @@ config.calibrate.photoRefObjLoader.ref_dataset_name = "my_ps1_catalog"
 config.calibrate.astromRefObjLoader.retarget(LoadIndexedReferenceObjectsTask)
 config.calibrate.astromRefObjLoader.ref_dataset_name = "my_ps1_catalog"
 
-config.charImage.refObjLoader.ref_dataset_name='my_ps1_catalog'
 config.calibrate.photoCal.photoCatName='my_ps1_catalog'
 config.calibrate.connections.astromRefCat='my_ps1_catalog'
 config.calibrate.connections.photoRefCat='my_ps1_catalog'
