@@ -435,3 +435,11 @@ config.id_name='_id'
 # photometric information.  At least one entry is required.
 config.mag_column_list=['mean_mag_g', 'mean_mag_r', 'mean_mag_i', 'mean_mag_z', 'mean_mag_y']
 ```
+
+Then, assuming you've set up your repository as before in Appendix B, you can run:
+
+```
+ingestReferenceCatalog.py my_ref_repo/ result.txt --configfile my_ref.cfg
+```
+
+This will produce output HTM shard catalog files at `my_ref_repo/ref_cats/decaps_dr1_object`.
