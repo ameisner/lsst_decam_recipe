@@ -310,3 +310,5 @@ The name `my_ps1_catalog` is arbitrary. The various column names provided need t
 ```
 ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
 ```
+
+The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`.
