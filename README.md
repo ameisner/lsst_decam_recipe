@@ -381,3 +381,27 @@ Regarding the setting of `config.file_reader`, it is important that this be done
 ```
 ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.fits --configfile my_ref_fits.cfg &> ingestReferenceCatalog-fits.log &
 ```
+### appendix D: making NSC DR2 reference catalogs
+
+Say that you've obtained an ASCII version of some portion of the NSC DR2 `object` table from Data Lab, in a file named `result.txt`. This can be ingested into LSST-style sharded HTM reference catalog format using the following configuration file `my_ref.cfg`:
+
+```
+# String to pass to the butler to retrieve persisted files.
+config.dataset_config.ref_dataset_name='nsc_dr2_object'
+
+# Name of RA column
+config.ra_name='ra'
+
+# Name of Dec column
+config.dec_name='dec'
+
+# Name of column to use as an identifier (optional).
+config.id_name='id'
+
+# The values in the reference catalog are assumed to be in AB magnitudes. List of column names to use for
+# photometric information.  At least one entry is required.
+config.mag_column_list=['gmag', 'rmag', 'imag', 'zmag', 'ymag']
+
+# A map of magnitude column name (key) to magnitude error column (value).
+config.mag_err_column_map={'gmag':'gerr', 'rmag':'rerr', 'imag':'ierr', 'zmag':'zerr', 'ymag':'yerr'}
+```
