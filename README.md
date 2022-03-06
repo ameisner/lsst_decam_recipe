@@ -339,6 +339,16 @@ processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs_my_ps1 --id visi
 
 ### appendix C: making reference catalogs from FITS input
 
+FITS files are in some ways preferable to ASCII. The following version of `my_ref.cfg` works if your starting point is a FITS file called `ps1_HITS.fits` rather than `ps1_HITS.csv`. `ps1_HITS.fits` should contain the catalog in a binary table in extension=1 and have the same column names as did `ps1_HITS.csv`:
+
+```
+hdul.info()
+Filename: ps1_HITS.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU       4   ()      
+  1                1 BinTableHDU     56   2293913R x 22C   [K, D, D, K, D, D, D, D, D, D, D, D, D, D, D, D, K, D, D, D, D, K] 
+```
+
 ```
 from lsst.meas.algorithms.readFitsCatalogTask import ReadFitsCatalogTask
 
