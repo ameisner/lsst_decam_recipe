@@ -314,3 +314,19 @@ ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
 The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`.
 
 Now we will use these reference catalogs to run DECam CCD calibration. Return to the `$DATA` directory, and make a symlink called `DATA/ref_cats/my_ps1_catalog` that points to `$REF/my_ref_repo/ref_cats/my_ps1_catalog`.
+
+Now we need a configuration override file to make the calibration pipeline actually use our `my_ps1_catalog` reference catalogs. In this case we name this file `processCcd-overrides-my_ps1.py`, and its contents are
+
+```
+from lsst.meas.algorithms import LoadIndexedReferenceObjectsTask
+config.calibrate.photoRefObjLoader.retarget(LoadIndexedReferenceObjectsTask)
+config.calibrate.photoRefObjLoader.ref_dataset_name = "my_ps1_catalog"
+config.calibrate.astromRefObjLoader.retarget(LoadIndexedReferenceObjectsTask)
+config.calibrate.astromRefObjLoader.ref_dataset_name = "my_ps1_catalog"
+
+config.charImage.refObjLoader.ref_dataset_name='my_ps1_catalog'
+config.calibrate.photoCal.photoCatName='my_ps1_catalog'
+config.calibrate.connections.astromRefCat='my_ps1_catalog'
+config.calibrate.connections.photoRefCat='my_ps1_catalog'
+```
+
