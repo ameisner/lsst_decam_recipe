@@ -329,8 +329,10 @@ config.calibrate.connections.astromRefCat='my_ps1_catalog'
 config.calibrate.connections.photoRefCat='my_ps1_catalog'
 ```
 
+Note that the first five lines are included in the aforementioned forum post, but the last three lines are not.
+
 Now we can run `processCcd.py` using the `my_ps1_catalog` reference catalogs for both astrometric and photometric calibration:
 
 ```
-processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs_my_ps1 --id visit=412321 ccdnum=42 filter=g --longlog --configfile processCcd-overrides-my_ps1.py &> processCcd-my_ps1.log &
+processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs_my_ps1 --id visit=412321 ccdnum=42 filter=g --longlog --configfile processCcd-overrides-my_ps1.py &> processCcd-my_ps1.log
 ```
