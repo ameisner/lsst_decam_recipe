@@ -405,3 +405,11 @@ config.mag_column_list=['gmag', 'rmag', 'imag', 'zmag', 'ymag']
 # A map of magnitude column name (key) to magnitude error column (value).
 config.mag_err_column_map={'gmag':'gerr', 'rmag':'rerr', 'imag':'ierr', 'zmag':'zerr', 'ymag':'yerr'}
 ```
+
+Then, assuming you've set up your repository as before in Appendix B, you can run:
+
+```
+ingestReferenceCatalog.py my_ref_repo/ result.txt --configfile my_ref.cfg
+```
+
+This will produce output HTM shard catalog files at `my_ref_repo/ref_cats/nsc_dr2_object`.
