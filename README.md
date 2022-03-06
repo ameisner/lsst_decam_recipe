@@ -305,7 +305,7 @@ config.mag_column_list=['g', 'r', 'i', 'z', 'y']
 config.mag_err_column_map={'g':'g_err', 'r':'r_err', 'i':'i_err', 'z':'z_err', 'y':'y_err'}
 ```
 
-The name `my_ps1_catalog` is arbitrary. The various column names provided need to match the column names in your CSV file. Now you can make the set of sharded reference catalogs by running:
+The name `my_ps1_catalog` is arbitrary. The various column names provided need to match the column names in your CSV file. The RA and Dec values in the CSV file need to be in decimal degrees (they get converted to radians for the sharded HTM files). Now you can make the set of sharded reference catalogs by running:
 
 ```
 ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
