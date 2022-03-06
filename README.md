@@ -336,3 +336,30 @@ Now we can run `processCcd.py` using the `my_ps1_catalog` reference catalogs for
 ```
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs_my_ps1 --id visit=412321 ccdnum=42 filter=g --longlog --configfile processCcd-overrides-my_ps1.py &> processCcd-my_ps1.log
 ```
+
+### appendix C: making reference catalogs from FITS input
+
+```
+from lsst.meas.algorithms.readFitsCatalogTask import ReadFitsCatalogTask
+
+# String to pass to the butler to retrieve persisted files.
+config.dataset_config.ref_dataset_name='my_ps1_catalog'
+
+config.file_reader.retarget(ReadFitsCatalogTask)
+
+# Name of RA column
+config.ra_name='coord_ra'
+
+# Name of Dec column
+config.dec_name='coord_dec'
+
+# Name of column to use as an identifier (optional).
+config.id_name='id'
+
+# The values in the reference catalog are assumed to be in AB magnitudes. List of column names to use for
+# photometric information.  At least one entry is required.
+config.mag_column_list=['g', 'r', 'i', 'z', 'y']
+
+# A map of magnitude column name (key) to magnitude error column (value).
+config.mag_err_column_map={'g':'g_err', 'r':'r_err', 'i':'i_err', 'z':'z_err', 'y':'y_err'}
+```
