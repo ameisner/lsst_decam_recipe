@@ -339,7 +339,7 @@ processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs_my_ps1 --id visi
 
 ### appendix C: making reference catalogs from FITS input
 
-FITS files are in some ways preferable to ASCII. The following version of `my_ref.cfg` works if your starting point is a FITS file called `ps1_HITS.fits` rather than `ps1_HITS.csv`. `ps1_HITS.fits` should contain the catalog in a binary table in extension=1 and have the same column names as did `ps1_HITS.csv`:
+FITS files are in some ways preferable to ASCII. Suppose your starting point is a FITS file called `ps1_HITS.fits` rather than `ps1_HITS.csv`. `ps1_HITS.fits` should contain the catalog in a binary table in extension=1 and have the same column names as did `ps1_HITS.csv`:
 
 ```
 hdul.info()
@@ -348,6 +348,8 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
   0  PRIMARY       1 PrimaryHDU       4   ()      
   1                1 BinTableHDU     56   2293913R x 22C   [K, D, D, K, D, D, D, D, D, D, D, D, D, D, D, D, K, D, D, D, D, K] 
 ```
+
+Here is the relevant configuration file (`my_ref_fits-retarget.cfg`) for ingestReferenceCatalog.py to read FITS input:
 
 ```
 from lsst.meas.algorithms.readFitsCatalogTask import ReadFitsCatalogTask
@@ -373,3 +375,5 @@ config.mag_column_list=['g', 'r', 'i', 'z', 'y']
 # A map of magnitude column name (key) to magnitude error column (value).
 config.mag_err_column_map={'g':'g_err', 'r':'r_err', 'i':'i_err', 'z':'z_err', 'y':'y_err'}
 ```
+
+Regarding the setting of `config.file_reader`, it is important that this be done with `config.file_reader.retarget(ReadFitsCatalogTask)` -- `config.file_reader=ReadFitsCatalogTask` does not work.
