@@ -304,3 +304,9 @@ config.mag_column_list=['g', 'r', 'i', 'z', 'y']
 # A map of magnitude column name (key) to magnitude error column (value).
 config.mag_err_column_map={'g':'g_err', 'r':'r_err', 'i':'i_err', 'z':'z_err', 'y':'y_err'}
 ```
+
+The name `my_ps1_catalog` is arbitrary. The various column names provided need to match the column names in your CSV file. Now you can make the set of sharded reference catalogs by running:
+
+```
+ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
+```
