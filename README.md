@@ -349,7 +349,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
   1                1 BinTableHDU     56   2293913R x 22C   [K, D, D, K, D, D, D, D, D, D, D, D, D, D, D, D, K, D, D, D, D, K] 
 ```
 
-Here is the relevant configuration file (`my_ref_fits-retarget.cfg`) for ingestReferenceCatalog.py to read FITS input:
+Here is the relevant configuration file (`my_ref_fits.cfg`) for ingestReferenceCatalog.py to read FITS input:
 
 ```
 from lsst.meas.algorithms.readFitsCatalogTask import ReadFitsCatalogTask
@@ -376,4 +376,8 @@ config.mag_column_list=['g', 'r', 'i', 'z', 'y']
 config.mag_err_column_map={'g':'g_err', 'r':'r_err', 'i':'i_err', 'z':'z_err', 'y':'y_err'}
 ```
 
-Regarding the setting of `config.file_reader`, it is important that this be done with `config.file_reader.retarget(ReadFitsCatalogTask)`; `config.file_reader=ReadFitsCatalogTask` does not work.
+Regarding the setting of `config.file_reader`, it is important that this be done with `config.file_reader.retarget(ReadFitsCatalogTask)`; `config.file_reader=ReadFitsCatalogTask` does not work. This would then be run with:
+
+```
+ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.fits --configfile my_ref_fits.cfg &> ingestReferenceCatalog-fits.log &
+```
