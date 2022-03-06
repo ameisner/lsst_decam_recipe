@@ -413,3 +413,25 @@ ingestReferenceCatalog.py my_ref_repo/ result.txt --configfile my_ref.cfg
 ```
 
 This will produce output HTM shard catalog files at `my_ref_repo/ref_cats/nsc_dr2_object`.
+
+### appendix E: making DECaPS DR1 reference catalogs
+
+Say that you've obtained an ASCII version of some portion of the DECaPS DR1 "object" table from Data Lab, in a file named `result.txt`. This can be ingested into LSST-style sharded HTM reference catalog format using the following configuration file `my_ref.cfg`:
+
+```
+# String to pass to the butler to retrieve persisted files.
+config.dataset_config.ref_dataset_name='decaps_dr1_object'
+
+# Name of RA column
+config.ra_name='ra'
+
+# Name of Dec column
+config.dec_name='dec'
+
+# Name of column to use as an identifier (optional).
+config.id_name='_id'
+
+# The values in the reference catalog are assumed to be in AB magnitudes. List of column names to use for
+# photometric information.  At least one entry is required.
+config.mag_column_list=['mean_mag_g', 'mean_mag_r', 'mean_mag_i', 'mean_mag_z', 'mean_mag_y']
+```
