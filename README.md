@@ -383,7 +383,7 @@ ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.fits --configfile my_ref_fits.cf
 ```
 ### appendix D: making NSC DR2 reference catalogs
 
-Say that you've obtained an ASCII version of some portion of the NSC DR2 `object` table from Data Lab, in a file named `result.txt`. This can be ingested into LSST-style sharded HTM reference catalog format using the following configuration file `my_ref.cfg`:
+Say that you've obtained an ASCII version of some portion of the NSC DR2 "object" table from Data Lab, in a file named `result.txt`. This can be ingested into LSST-style sharded HTM reference catalog format using the following configuration file `my_ref.cfg`:
 
 ```
 # String to pass to the butler to retrieve persisted files.
