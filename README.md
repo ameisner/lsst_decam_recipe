@@ -263,3 +263,44 @@ id|filter|ccdnum|calibDate|validStart|validEnd
 ```
 
 ### appendix B: making your own reference catalogs
+
+It is more generally useful to learn how to make reference catalogs from scratch oneself rather than copying/renaming a bunch of pre-provided files. This section explains how to generate a set of "sharded" HTM reference catalogs starting from a catalog covering the relevant sky region but in another (non-LSST) format. The instructions here are largely based on:
+
+https://community.lsst.org/t/creating-and-using-new-style-reference-catalogs/1523
+
+First you will need to (somehow) obtain a catalog of suitable astrometric/photometric reference stars covering the sky region of interest. In this example we will use the following file:
+
+https://portal.nersc.gov/project/cosmo/temp/ameisner/ps1_HITS.csv.gz
+
+Which is 169 MB (509 MB) compressed (uncompressed), and contains information about Pan-STARRS stars covering all of the relevant HITS data in the ap_verify_hits2015 example.
+
+Let's make and go to a directory called $REF within which we'll build the sharded reference catalog. Download and uncompress the ps1_HITS.csv.gz catalog file so that there's a file called $REF/ps1_HITS.csv. Make a directory called $REF/my_ref_repo. This directory will be a Butler repository used for making the sharded reference catalogs. This repository needs a \_mapper file. This can be either of:
+
+```echo "lsst.obs.test.TestMapper" > my_ref_repo/_mapper```
+
+or
+
+```echo "lsst.obs.decam.DecamMapper" > my_ref_repo/_mapper```
+
+Now make a file called $REF/my_ref.cfg, which looks like:
+
+```
+# String to pass to the butler to retrieve persisted files.
+config.dataset_config.ref_dataset_name='my_ps1_catalog'
+
+# Name of RA column
+config.ra_name='coord_ra'
+
+# Name of Dec column
+config.dec_name='coord_dec'
+
+# Name of column to use as an identifier (optional).
+config.id_name='id'
+
+# The values in the reference catalog are assumed to be in AB magnitudes. List of column names to use for
+# photometric information.  At least one entry is required.
+config.mag_column_list=['g', 'r', 'i', 'z', 'y']
+
+# A map of magnitude column name (key) to magnitude error column (value).
+config.mag_err_column_map={'g':'g_err', 'r':'r_err', 'i':'i_err', 'z':'z_err', 'y':'y_err'}
+```
