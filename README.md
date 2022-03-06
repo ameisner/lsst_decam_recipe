@@ -315,7 +315,7 @@ The sharded reference catalogs and the associated `config.py` and `master_schema
 
 Now we will use these reference catalogs to run DECam CCD calibration. Return to the `$DATA` directory, and make a symlink called `DATA/ref_cats/my_ps1_catalog` that points to `$REF/my_ref_repo/ref_cats/my_ps1_catalog`.
 
-Now we need a configuration override file to make the calibration pipeline actually use our `my_ps1_catalog` reference catalogs. In this case we name this file `processCcd-overrides-my_ps1.py`, and its contents are
+Now we need a configuration override file to make the calibration pipeline actually use our `my_ps1_catalog` reference catalogs. In this case we name this file `processCcd-overrides-my_ps1.py`, and its contents are:
 
 ```
 from lsst.meas.algorithms import LoadIndexedReferenceObjectsTask
