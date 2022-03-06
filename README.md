@@ -312,3 +312,5 @@ ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
 ```
 
 The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`.
+
+Now we will use these reference catalogs to run DECam CCD calibration. Return to the `$DATA` directory, and make a symlink called `DATA/ref_cats/my_ps1_catalog` that points to `$REF/my_ref_repo/ref_cats/my_ps1_catalog`.
