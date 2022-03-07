@@ -381,6 +381,9 @@ Regarding the setting of `config.file_reader`, it is important that this be done
 ```
 ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.fits --configfile my_ref_fits.cfg &> ingestReferenceCatalog-fits.log &
 ```
+
+Building the reference catalogs from FITS files also works starting with multiple FITS files, for instance if `ps1_HITS.fits` were split between `ps1_HITS-part1.fits` and `ps1_HITS-part2.fits`, then replacing `ps1_HITS.fits` with `ps1_HITS-part?.fits` in the above `ingestReferenceCatalog.py` command would work.
+
 ### appendix D: making NSC DR2 reference catalogs
 
 Say that you've obtained an ASCII version of some portion of the NSC DR2 "object" table from Data Lab, in a file named `result.txt`. This can be ingested into LSST-style sharded HTM reference catalog format using the following configuration file `my_ref.cfg`:
