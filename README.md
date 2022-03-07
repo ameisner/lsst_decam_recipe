@@ -311,7 +311,7 @@ The name `my_ps1_catalog` is arbitrary. The various column names provided need t
 ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
 ```
 
-The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`.
+The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`. If the input catalog were split across multiple CSV files, say `ps1_HITS-part[0-9]`, it would work to specify `ps1_HITS-part?.csv` instead of `ps1_HITS.csv` in the above `ingestReferenceCatalog.py` command.
 
 Now we will use these reference catalogs to run DECam CCD calibration. Return to the `$DATA` directory, and make a symlink called `DATA/ref_cats/my_ps1_catalog` that points to `$REF/my_ref_repo/ref_cats/my_ps1_catalog`.
 
