@@ -319,7 +319,13 @@ Note that `ingestReferenceCatalog.py` accepts the `-j` argument for multiprocess
 root WARN: This task does not support multiprocessing; using one process
 ```
 
-This warning is issued both when ingesting FITS and CSV input catalog files.
+This warning is issued both when ingesting FITS and CSV input catalog files. Multiprocessing during ingestion can be achieved by using the `config.n_processes` parameter for `ingestReferenceCatalog.py`. This can be added to the `ingestReferenceCatalog.py` configuration file as, for instance:
+
+```
+config.n_processes = 8
+```
+
+Note that the `config.n_processes` argument has no effect unless you are ingesting a set of multiple input catalogs (as opposed to one large input file).
 
 Now we will use these reference catalogs to run DECam CCD calibration. Return to the `$DATA` directory, and make a symlink called `DATA/ref_cats/my_ps1_catalog` that points to `$REF/my_ref_repo/ref_cats/my_ps1_catalog`.
 
