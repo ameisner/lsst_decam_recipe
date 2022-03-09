@@ -313,6 +313,12 @@ ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
 
 The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`. If the input catalog were split across multiple CSV files, say `ps1_HITS-part[0-9]`, it would work to specify `ps1_HITS-part?.csv` instead of `ps1_HITS.csv` in the above `ingestReferenceCatalog.py` command.
 
+Note that `ingestReferenceCatalog.py` accepts the `-j` argument for multiprocessing (and includes this argument in the `ingestReferenceCatalog.py -h` help, but multiprocessing won't actually happen. From the log file when using `-j 8`:
+
+```
+root WARN: This task does not support multiprocessing; using one process
+```
+
 Now we will use these reference catalogs to run DECam CCD calibration. Return to the `$DATA` directory, and make a symlink called `DATA/ref_cats/my_ps1_catalog` that points to `$REF/my_ref_repo/ref_cats/my_ps1_catalog`.
 
 Now we need a configuration override file to make the calibration pipeline actually use our `my_ps1_catalog` reference catalogs. In this case we name this file `processCcd-overrides-my_ps1.py`, and its contents are:
