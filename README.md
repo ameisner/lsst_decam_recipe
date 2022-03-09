@@ -313,7 +313,7 @@ ingestReferenceCatalog.py my_ref_repo/ ps1_HITS.csv --configfile my_ref.cfg
 
 The sharded reference catalogs and the associated `config.py` and `master_schema.fits` files are written to `my_ref_repo/ref_cats/my_ps1_catalog`. If the input catalog were split across multiple CSV files, say `ps1_HITS-part[0-9]`, it would work to specify `ps1_HITS-part?.csv` instead of `ps1_HITS.csv` in the above `ingestReferenceCatalog.py` command.
 
-Note that `ingestReferenceCatalog.py` accepts the `-j` argument for multiprocessing (and includes this argument in the `ingestReferenceCatalog.py -h` help, but multiprocessing won't actually happen. From the log file when using `-j 8`:
+Note that `ingestReferenceCatalog.py` accepts the `-j` argument for multiprocessing (and includes this argument in the `ingestReferenceCatalog.py -h` help), but multiprocessing won't actually happen. From the log file when using `-j 8`:
 
 ```
 root WARN: This task does not support multiprocessing; using one process
