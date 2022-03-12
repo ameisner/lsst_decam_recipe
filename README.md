@@ -227,6 +227,17 @@ Output information gets written to ``ppdb/association.db``, and also ``DATA/reru
 
 ### running the alert pipeline: calexp template
 
+It is also possible to run the alert pipeline using calibrated single-exposure data as the template. This can be accomplished with:
+
+```
+mkdir ppdb_calexp
+make_ppdb.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///ppdb_calexp/association.db"
+
+ap_pipe.py DATA --calib DATA/CALIB --rerun processed_calexp -C $AP_PIPE_DIR/config/calexpTemplates.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///ppdb_calexp/association.db" --id visit=411858 ccdnum=42 filter=g --templateId visit=410915 date=2015-02-17 &> ap_calexp_26.log &
+```
+
+Both exposures (visit=411858, 410915) were selected to be pointed at the Blind15A_26 field, so that ccdnum=42 in the two exposures are overlapping. Note that it is important to include `date=2015-02-17` within the `--templateId` data selection; if this date is not specified then the Butler assumes that the reference and template have the same date, which is not the case in general (here the reference has date = 2015-02-17 and the science image has date = 2015-02-19).
+
 ### appendix A: using the Butler sqlite3 database files
 
 When raw data are ingested, a database file called ``DATA/registry.sqlite3`` is created. Checking this database can be useful as a debugging tool and to explore the dataset. For instance:
