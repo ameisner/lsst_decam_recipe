@@ -236,7 +236,7 @@ make_ppdb.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///
 ap_pipe.py DATA --calib DATA/CALIB --rerun processed_calexp -C $AP_PIPE_DIR/config/calexpTemplates.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///ppdb_calexp/association.db" --id visit=411858 ccdnum=42 filter=g --templateId visit=410915 date=2015-02-17 &> ap_calexp_26.log &
 ```
 
-Both exposures (visit=411858, 410915) were selected to be pointed at the Blind15A_26 field, so that ccdnum=42 in the two exposures are overlapping. Note that it is important to include `date=2015-02-17` within the `--templateId` data selection; if this date is not specified then the Butler assumes that the reference and template have the same date, which is not the case in general (here the reference has date = 2015-02-17 and the science image has date = 2015-02-19).
+Both exposures (visit=411858, 410915) were selected to be pointed at the Blind15A_26 field, so that ccdnum=42 in the two exposures are overlapping. Note that it is important to include `date=2015-02-17` within the `--templateId` data selection; if this date is not specified then the Butler assumes that the reference and science image have the same date, which is not the case in general (here the reference has date = 2015-02-17 and the science image has date = 2015-02-19).
 
 ### appendix A: using the Butler sqlite3 database files
 
