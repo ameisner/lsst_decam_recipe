@@ -37,3 +37,5 @@ Use the LonLat object to create a UnitVector3d object:
 ```
 __init__(self: lsst.sphgeom.unitVector3d.UnitVector3d, lonLat: lsst.sphgeom.lonLat.LonLat)
 ```
+
+Then this unit vector can be used as an input to the lsst.sphgeom.HtmPixelization.index method.
