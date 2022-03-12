@@ -238,6 +238,8 @@ ap_pipe.py DATA --calib DATA/CALIB --rerun processed_calexp -C $AP_PIPE_DIR/conf
 
 Both exposures (visit=411858, 410915) were selected to be pointed at the Blind15A_26 field, so that ccdnum=42 in the two exposures are overlapping. Note that it is important to include `date=2015-02-17` within the `--templateId` data selection; if this date is not specified then the Butler assumes that the reference and science image have the same date, which is not the case in general (here the reference has date = 2015-02-17 and the science image has date = 2015-02-19).
 
+Note also that the above command performs CCD level calibration on both the template and science CCDs, starting from the raw data; I tried but did not succeed at getting `ap_pipe.py` to use an existing rerun with calexp products already available.
+
 ### appendix A: using the Butler sqlite3 database files
 
 When raw data are ingested, a database file called ``DATA/registry.sqlite3`` is created. Checking this database can be useful as a debugging tool and to explore the dataset. For instance:
