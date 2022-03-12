@@ -2,8 +2,23 @@ import lsst.sphgeom
 import numpy as np
 
 def lon_lat_to_trixel(lon_deg, lat_deg, level):
-    # level is HTM level (integer)
-    # vectorization?
+    '''
+    Convert longitude, latitude pair in degrees to HTM trixel number.
+    
+    Parameters:
+        lon_deg : float
+            Longitude in degrees.
+        lat_deg : float
+            Latitude in degrees.
+        level : int
+            HTM depth.
+    Returns:
+        trixel : int
+            HTM trixel number corresponding to the input lon, lat and HTM depth.
+    
+    Notes:
+        How to vectorize?
+    '''
 
     deg2rad = np.pi/180
 
