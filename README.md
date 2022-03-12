@@ -213,7 +213,7 @@ assembleCoadd.py DATA --rerun coadd_26 \
 
 Only the Blind15A_26 case is shown here. The per-patch coaddition outputs are written to files ``DATA/rerun/coadd_26/deepCoadd/g/0/*.fits``. There are 32 such files -- not every single patch ends up having CCDs that overlap with its footprint.
 
-### running the alert pipeline
+### running the alert pipeline: coadd templates
 
 For each field, its respective ``DATA/rerun/coadd_??`` will be specified to ``ap_pipe.py`` as the template location. For field Blind15A_26, we have:
 
@@ -224,6 +224,8 @@ ap_pipe.py DATA --calib DATA/CALIB --rerun processed -c ppdb.isolation_level=REA
 ```
 
 Output information gets written to ``ppdb/association.db``, and also ``DATA/rerun/processed``. Note that EXPID = 411858 was chosen because it is an observation of the Blind15A_26 field.
+
+### running the alert pipeline: calexp templates
 
 ### appendix A: using the Butler sqlite3 database files
 
