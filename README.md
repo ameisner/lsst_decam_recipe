@@ -252,7 +252,7 @@ make_ppdb.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///
 ap_pipe.py DATA --calib DATA/CALIB --rerun processed_calexp_many -C $AP_PIPE_DIR/config/calexpTemplates.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///ppdb_calexp_many/association.db" --id visit=411858 filter=g --templateId visit=410915 date=2015-02-17 &> ap_calexp_26-many.log &
 ```
 
-This serial processing takes about 1.75 minutes per science CCD (where that 1.75 minutes includes calibrating both the reference and science CCDs, and also performing the differencing).
+This serial processing takes about 1.75 minutes per science CCD (where that 1.75 minutes includes calibrating both the reference and science CCDs, and also performing the differencing). The above command's processing can also be parallelized using the `-j` command line argument for `ap_pipe.py`.
 
 ### appendix A: using the Butler sqlite3 database files
 
