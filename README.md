@@ -240,6 +240,20 @@ Both exposures (visit=411858, 410915) were selected to be pointed at the Blind15
 
 Note also that the above command performs CCD level calibration on both the template and science CCDs, starting from the raw data; I tried but did not succeed at getting `ap_pipe.py` to use an existing rerun with calexp products already available.
 
+A close variant of the above `ap_pipe.py` calexp command will process all CCDs in exposure 411858. Simply delete the `ccdnum=42` specification from the `--id` filtering:
+
+```
+rm -rf ppdb_calexp_many
+rm -rf DATA/rerun/processed_calexp_many
+
+mkdir ppdb_calexp_many
+make_ppdb.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///ppdb_calexp_many/association.db"
+
+ap_pipe.py DATA --calib DATA/CALIB --rerun processed_calexp_many -C $AP_PIPE_DIR/config/calexpTemplates.py -c ppdb.isolation_level=READ_UNCOMMITTED -c ppdb.db_url="sqlite:///ppdb_calexp_many/association.db" --id visit=411858 filter=g --templateId visit=410915 date=2015-02-17 &> ap_calexp_26-many.log &
+```
+
+This serial processing takes about 1.75 minutes per science CCD (where that 1.75 minutes includes calibrating both the reference and science CCDs, and also performing the differencing).
+
 ### appendix A: using the Butler sqlite3 database files
 
 When raw data are ingested, a database file called ``DATA/registry.sqlite3`` is created. Checking this database can be useful as a debugging tool and to explore the dataset. For instance:
