@@ -494,6 +494,25 @@ This will produce output HTM shard catalog files at `my_ref_repo/ref_cats/decaps
 
 Let's say that you would like to reduce some other DECam science data (not from the example HITS 2015 data set) using the LSST pipeline. For g band, you can run `processCcd.py` using the same calibration files curated for the examaple HITS data set. To do this, you can set up a new repository:
 
+```
+mkdir DATA
+mkdir DATA/CALIB
+
+echo lsst.obs.decam.DecamMapper > DATA/_mapper
+```
+
+```
+ingestImagesDecam.py DATA --filetype raw raw/*.fz --mode=link
+
+mkdir flats_biases
+rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpBias/cpBias*.fits flats_biases
+rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpFlat/g/*/cpFlat*.fits flats_biases
+
+ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mode=link -C configSupersede.py
+
+ingestDefects.py DATA $INSTALL_DIR/stack/miniconda3-4.7.10-4d7b902/Linux64/obs_decam_data/19.0.0/decam/defects --calib DATA/CALIB
+```
+
 Load calibrations exactly as before:
 
 
