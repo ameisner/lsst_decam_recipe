@@ -501,9 +501,20 @@ mkdir DATA/CALIB
 echo lsst.obs.decam.DecamMapper > DATA/_mapper
 ```
 
+Then ingest the raw DECam science images from a staging directory called `raw/`:
+
 ```
 ingestImagesDecam.py DATA --filetype raw raw/*.fz --mode=link
+```
 
+There are multiple ways of populating the `raw/` directory. I used an Astro Data Archive SIA query to construct `wget` download commands:
+
+```
+wget https://astroarchive.noirlab.edu/api/retrieve/0eae8b74999ebeb2bf8d3c41611cca50/ -O 'raw/DECam_00769126.fits.fz'
+wget https://astroarchive.noirlab.edu/api/retrieve/1b97b87a65db6c8dac10c953105c7e7e/ -O 'raw/DECam_00660930.fits.fz'
+```
+
+```
 mkdir flats_biases
 rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpBias/cpBias*.fits flats_biases
 rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpFlat/g/*/cpFlat*.fits flats_biases
