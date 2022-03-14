@@ -492,7 +492,7 @@ This will produce output HTM shard catalog files at `my_ref_repo/ref_cats/decaps
 
 ### appendix F: reducing other DECam data
 
-Let's say that you would like to reduce some other DECam science data (not from the example HITS 2015 data set) using the LSST pipeline. For g band, you can run `processCcd.py` using the same calibration files curated for the examaple HITS data set. To do this, you can set up a new repository:
+Let's say that you would like to reduce some other DECam science data (not from the example HITS 2015 data set) using the LSST pipeline. For g band, you can run `processCcd.py` using the same calibration files curated for the example HITS data set. To do this, you can set up a new repository:
 
 ```
 mkdir DATA
