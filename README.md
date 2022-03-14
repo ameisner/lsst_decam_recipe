@@ -492,9 +492,10 @@ This will produce output HTM shard catalog files at `my_ref_repo/ref_cats/decaps
 
 # appendix F: reducing other DECam data
 
-Let's say that you would like to reduce some other DECam data (not from the example HITS 2015 data set) using the LSST pipeline. For g band, you can run `processCCd` using the same calibration files curated for the examaple HITS data set. To do this, you can set up a new repository:
+Let's say that you would like to reduce some other DECam science data (not from the example HITS 2015 data set) using the LSST pipeline. For g band, you can run `processCcd.py` using the same calibration files curated for the examaple HITS data set. To do this, you can set up a new repository:
 
 Load calibrations exactly as before:
+
 
 Then you'll need to update your configuration slightly in order to use these calibrations for other DECam data, which may fall outside of the `validStart` to `validEnd`date range of the calibrations. Create a configuration file called `configSupersede.py` with contents:
 
@@ -502,3 +503,7 @@ Then you'll need to update your configuration slightly in order to use these cal
 Tables for which to set validity for a calib from when it is taken until it is superseded by the next; validity in other tables is calculated by applying the validity range.
 config.register.validityUntilSuperseded=['defects', 'bias', 'flat', 'fringe', 'dark', 'illumcor']
 ```
+
+The idea is to make the pipeline ignore the `validStart`/`validEnd` constraint on e.g., the available master biases/flats. Then you can do the data reduction:
+
+You'll also need to put suitable reference catalogs in place covering your chosen sky location.
