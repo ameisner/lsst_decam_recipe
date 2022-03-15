@@ -514,6 +514,8 @@ wget https://astroarchive.noirlab.edu/api/retrieve/0eae8b74999ebeb2bf8d3c41611cc
 wget https://astroarchive.noirlab.edu/api/retrieve/1b97b87a65db6c8dac10c953105c7e7e/ -O 'raw/DECam_00660930.fits.fz'
 ```
 
+Load the calibrations very similarly to what was done for the HITS 2015 example data set:
+
 ```
 mkdir flats_biases
 rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpBias/cpBias*.fits flats_biases
@@ -524,16 +526,16 @@ ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mod
 ingestDefects.py DATA $INSTALL_DIR/stack/miniconda3-4.7.10-4d7b902/Linux64/obs_decam_data/19.0.0/decam/defects --calib DATA/CALIB
 ```
 
-Load calibrations exactly as before:
 
-
-Then you'll need to update your configuration slightly in order to use these calibrations for other DECam data, which may fall outside of the `validStart` to `validEnd`date range of the calibrations. Create a configuration file called `configSupersede.py` with contents:
+In the `ingestCalibs.py` call, the configuration has been changed slightly in order to use the HITS 2015 calibrations for other DECam data, which may fall outside of the `validStart` to `validEnd`date range of the HITS 2015 calibrations. This is accomplished with a configuration file called `configSupersede.py`:
 
 ```
 Tables for which to set validity for a calib from when it is taken until it is superseded by the next; validity in other tables is calculated by applying the validity range.
 config.register.validityUntilSuperseded=['defects', 'bias', 'flat', 'fringe', 'dark', 'illumcor']
 ```
 
-The idea is to make the pipeline ignore the `validStart`/`validEnd` constraint on e.g., the available master biases/flats. Then you can do the data reduction:
+The idea is to make the pipeline ignore the `validStart`/`validEnd` constraint on e.g., the available master biases/flats. You'll also need to put suitable reference catalogs in place covering your chosen sky location. Then you can do the data reduction:
 
-You'll also need to put suitable reference catalogs in place covering your chosen sky location.
+```
+processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog
+```
