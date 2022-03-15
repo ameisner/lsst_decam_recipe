@@ -534,7 +534,7 @@ Tables for which to set validity for a calib from when it is taken until it is s
 config.register.validityUntilSuperseded=['defects', 'bias', 'flat', 'fringe', 'dark', 'illumcor']
 ```
 
-The idea is to make the pipeline ignore the `validStart`/`validEnd` constraint on e.g., the available master biases/flats. You'll also need to put suitable reference catalogs in place covering your chosen sky location. Then you can do the data reduction:
+The idea is to make the pipeline ignore the `validStart`/`validEnd` constraint on e.g., the available master biases/flats. You'll also need to put suitable reference catalogs in place covering your chosen sky location. Then, if your reference catalogs are at `DATA/ref_cats/ps1_pv3_3pi_20170110`, you can perform the data reduction as follows:
 
 ```
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog
