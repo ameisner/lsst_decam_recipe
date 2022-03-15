@@ -539,3 +539,9 @@ The idea is to make the pipeline ignore the `validStart`/`validEnd` constraint o
 ```
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog
 ```
+
+If you don't use the custom `validityUntilSuperseded` configuration mentioned above, then you will end up with errors like:
+
+```
+RuntimeError: Unable to retrieve cpBias for {'date': '2018-09-05', 'filter': 'g', 'visit': 769126, 'hdu': 1, 'ccdnum': 25, 'object': 'DECaLS_57359_g'}: No locations for get: datasetType:cpBias dataId:DataId(initialdata={'date': '2018-09-05', 'filter': 'g', 'visit': 769126, 'hdu': 1, 'ccdnum': 25, 'object': 'DECaLS_57359_g'}, tag=set()).
+```
