@@ -592,7 +592,7 @@ And making some subsequent cuts on the resulting DataFrame. DECam_00177741.fits.
 
 https://astroarchive.noirlab.edu/api/docs/#/short/short_read
 
-The `/short` API provides a list of all files for a specific (telescope, instrument, night). To identify relevant calibrations for the u-band science exposure, we can start by doing:
+The `/short` API provides a list of all files for a specific (telescope, instrument, night). To identify relevant calibrations for the u-band DECam science exposure, we can start by doing:
 
 ```
 url_short = 'https://astroarchive.noirlab.edu/api/short/ct4m/decam/2013-02-12/'
