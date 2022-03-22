@@ -545,3 +545,13 @@ If you don't use the custom `validityUntilSuperseded` configuration mentioned ab
 ```
 RuntimeError: Unable to retrieve cpBias for {'date': '2018-09-05', 'filter': 'g', 'visit': 769126, 'hdu': 1, 'ccdnum': 25, 'object': 'DECaLS_57359_g'}: No locations for get: datasetType:cpBias dataId:DataId(initialdata={'date': '2018-09-05', 'filter': 'g', 'visit': 769126, 'hdu': 1, 'ccdnum': 25, 'object': 'DECaLS_57359_g'}, tag=set()).
 ```
+
+Appendix G: DECam VR data
+
+In order to calibrate DECam VR data with `processCcd.py`, one needs to specify which filter to use from within the reference catalog. This can be accomplished by creating a custom configuration Python file as follows:
+
+```
+config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
+config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
+config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
+```
