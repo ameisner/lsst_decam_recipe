@@ -548,7 +548,7 @@ RuntimeError: Unable to retrieve cpBias for {'date': '2018-09-05', 'filter': 'g'
 
 ### Appendix G: DECam VR data
 
-In order to calibrate DECam VR data with `processCcd.py`, one needs to specify which filter to use from within the reference catalog. This can be accomplished by creating a custom configuration Python file as follows:
+In order to calibrate DECam VR data with `processCcd.py`, one needs to specify which filter to use from within the reference catalog. This can be accomplished by creating a custom configuration Python file with VR added to the following dictionaries:
 
 ```
 config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
