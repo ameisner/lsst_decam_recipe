@@ -572,4 +572,11 @@ processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -
 
 ### Appendix H: DECam u band in COSMOS
 
+Download the following raw DECam u-band exposure in/near the COSMOS region:
+
+```
+wget https://astroarchive.noirlab.edu/api/retrieve/297af0ee3aa4c643244de084df3345ab/ -O 'raw/DECam_00177741.fits.fz'
+```
+
+This exposure was identified via an Astro Data Archive SIA API cone search centered on (RA, Dec) ~ (150.1, 2.2):
 
