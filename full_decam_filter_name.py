@@ -1,4 +1,20 @@
 def full_filter_name(filter):
+    '''
+    Retrieve full DECam filter name used by Astro Data Archive.
+
+    Parameters
+    ----------
+        filter : str
+            Abbreviated filter name; of 'u', 'g', 'r', 'i', 'z'
+            'Y', 'VR'
+
+    Returns
+    -------
+        str
+            Full filter name.
+
+    '''
+
     full_names = {'u' : 'u DECam c0006 3500.0 1000.0',
                   'g' : 'g DECam SDSS c0001 4720.0 1520.0',
                   'r' : 'r DECam SDSS c0002 6415.0 1480.0',
