@@ -555,3 +555,17 @@ config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
 config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
 config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
 ```
+
+In this case, VR is being mapped to r-band. It is also possible to instead map VR to g-band:
+
+```
+config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'g'}
+config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'g'}
+config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'g'}
+```
+
+If these configuration options are specified in a file called `config-filtermap.py`, then they can be employed by `processedCcd.py` using:
+
+```
+processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -C config-filtermap.py -j 20
+```
