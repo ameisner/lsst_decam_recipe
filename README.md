@@ -569,3 +569,7 @@ If these configuration options are specified in a file called `config-filtermap.
 ```
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -C config-filtermap.py -j 20
 ```
+
+### Appendix H: DECam u band in COSMOS
+
+
