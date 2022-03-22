@@ -580,3 +580,12 @@ wget https://astroarchive.noirlab.edu/api/retrieve/297af0ee3aa4c643244de084df334
 
 This exposure was identified via an Astro Data Archive SIA API cone search centered on (RA, Dec) ~ (150.1, 2.2):
 
+```
+import requests
+import pandas as pd
+
+url_u = 'https://astroarchive.noirlab.edu/api/sia/voimg?POS=150.11916667,2.20583333&SIZE=2&VERB=2&limit=10000&instrument=decam&proctype=raw&format=json'
+df_u = pd.DataFrame(requests.get(url_u).json()[1:])
+```
+
+And making some subsequent cuts on the resulting DataFrame.
