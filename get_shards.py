@@ -34,11 +34,8 @@ def getShards(ra, dec, radius, depth=7):
             takes ~7 seconds for a 180 deg radius (all-sky), almost all of
             which is accounted for by my reformatting to Astropy table. actual
             calculations take ~5e-4 seconds for radius = 1 deg, 3e-2 seconds
-            for radius = 180 deg
-
-            Could get around the Astropy table slowness either by instead using
-            something like a numpy record array or just having two separate
-            pieces of the return value.
+            for radius = 180 deg. almost all of the run time is accounted for
+            by the conversion of the onBoundary generator to a list.
 
         '''
 
