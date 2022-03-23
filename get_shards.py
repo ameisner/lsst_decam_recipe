@@ -16,6 +16,8 @@ def getShards(ra, dec, radius, depth=7):
                 Declination in decimal degrees.
             radius : float
                 Radius within which to return nearby HTM trixel numbers.
+            depth : int (optional)
+                HTM pixelization depth parameter.
 
         Returns
         -------
@@ -50,3 +52,38 @@ def getShards(ra, dec, radius, depth=7):
         t['is_on_boundary'] = list(onBoundary)
 
         return t
+
+def getShards_decam_pointing(ra, dec, depth=7, margin=0.0):
+    '''
+    Get a list of HTM trixels possibly overlapping with a DECam pointing
+
+    Parameters
+    ----------
+        ra : float
+            DECam pointing center RA.
+        dec : float
+            DECam pointing center Dec.
+        depth : int
+            HTM pixelization depth parameter.
+        margin : float
+            Amount of padding for DECam field radius in degrees.
+
+    Returns
+    -------
+        result : astropy.table.table.Table
+            Table with the list of HTM trixel numbers and corresponding
+            boolean flag indicating whether each trixel is on the boundary
+            of the search region.
+
+    '''
+
+    # maximum angular radius of any DECam detector pixel from the field center
+    # eventually should be factored out into some sort of repository for
+    # for 'special numbers', rather than hardcoded here (and elsewhere)...
+    radius = 1.0923879
+
+    radius += margin
+
+    result = getShards(ra, dec, radius, depth=7)
+
+    return result
