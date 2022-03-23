@@ -31,6 +31,11 @@ def getShards(ra, dec, radius, depth=7):
 
             takes ~0.001-0.002 seconds for a ~1 deg radius
 
+            takes ~7 seconds for a 180 deg radius (all-sky), almost all of
+            which is accounted for by my reformatting to Astropy table. actual
+            calculations take ~5e-4 seconds for radius = 1 deg, 3e-2 seconds
+            for radius = 180 deg
+
         '''
 
         htm = HtmIndexer(depth=depth)
