@@ -665,5 +665,5 @@ config.id_name='id'
 config.mag_column_list=['u', 'g', 'r', 'i', 'z', 'y']
 
 # A map of magnitude column name (key) to magnitude error column (value).
-config.mag_err_column_map={'u':'uerr', 'g':'gerr', 'r':'rerr', 'i':'ierr', 'z':'zerr', 'y':'yerr'
+config.mag_err_column_map={'u':'uerr', 'g':'gerr', 'r':'rerr', 'i':'ierr', 'z':'zerr', 'y':'yerr'}
 ```
