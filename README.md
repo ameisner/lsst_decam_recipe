@@ -626,4 +626,17 @@ config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 ```
 
-It would perhaps be more satisfying to calibrate the u-band exposure with u-band reference catalog data, but PS1 does not offer u-band. To calibrate with a u-band reference catalog, we use NSC DR2.
+It would perhaps be more satisfying to calibrate the u-band exposure with u-band reference catalog data, but PS1 does not offer u-band. To calibrate with a u-band reference catalog, we use NSC DR2. To accomplish this, we start by issuing an NSC cone query to the NOIRLab Astro Data Lab using the `dl` Data Lab Python module:
+
+```
+from dl import queryClient as qc
+
+res = qc.query(sql='select * from nsc_dr2.object where q3c_radial_query(object.ra,object.dec,150.1101875,2.23218611,1.3) and ((object.umag < 22) or (object.rmag < 21))', fmt='table')
+
+for band in ['u', 'g', 'r', 'i', 'z', 'y']:
+    res.rename_column(band + 'mag', band)
+
+res.write('cosmos_u_refcat-renamed.csv', format='csv')
+```
+
+I found the renaming of the bands to simply 'u', 'g', ... rather than 'umag', 'gmag' to be necessary in order for `processCcd.py` to successfully access the correct reference catalog photometry columns during calibration (possibly there are configuration parameter changes that could be applied to make this renaming unnecessary).
