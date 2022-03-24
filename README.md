@@ -639,4 +639,31 @@ for band in ['u', 'g', 'r', 'i', 'z', 'y']:
 res.write('cosmos_u_refcat-renamed.csv', format='csv')
 ```
 
-I found the renaming of the bands to simply 'u', 'g', ... rather than 'umag', 'gmag' to be necessary in order for `processCcd.py` to successfully access the correct reference catalog photometry columns during calibration (possibly there are configuration parameter changes that could be applied to make this renaming unnecessary).
+I found the renaming of the bands to simply 'u', 'g', ... rather than 'umag', 'gmag' to be necessary in order for `processCcd.py` to successfully access the correct reference catalog photometry columns during calibration (possibly there are configuration parameter changes that could be applied to make this renaming unnecessary). You can then ingest this reference catalog with:
+
+```
+ingestReferenceCatalog.py my_ref_repo-renamed/ cosmos_u_refcat-renamed.csv --configfile my_ref-renamed.cfg
+```
+
+Where `my_ref-renamed.cfg` contains:
+
+```
+# String to pass to the butler to retrieve persisted files.
+config.dataset_config.ref_dataset_name='nsc_dr2_object_rename'
+
+# Name of RA column
+config.ra_name='ra'
+
+# Name of Dec column
+config.dec_name='dec'
+
+# Name of column to use as an identifier (optional).
+config.id_name='id'
+
+# The values in the reference catalog are assumed to be in AB magnitudes. List of column names to use for
+# photometric information.  At least one entry is required.
+config.mag_column_list=['u', 'g', 'r', 'i', 'z', 'y']
+
+# A map of magnitude column name (key) to magnitude error column (value).
+config.mag_err_column_map={'u':'uerr', 'g':'gerr', 'r':'rerr', 'i':'ierr', 'z':'zerr', 'y':'yerr'
+```
