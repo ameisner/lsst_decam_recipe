@@ -599,3 +599,4 @@ url_short = 'https://astroarchive.noirlab.edu/api/short/ct4m/decam/2013-02-12/'
 nightsum_u = pd.DataFrame(requests.get(url_short).json()[1:])
 ```
 
+The master flat for this night can then be identified by trimming the night summary data frame, requiring `proc_type` = 'mastercal', `prod_type` = 'image', and `ifilter` = 'u DECam c0006 3500.0 1000.0'.
