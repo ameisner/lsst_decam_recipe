@@ -599,4 +599,8 @@ url_short = 'https://astroarchive.noirlab.edu/api/short/ct4m/decam/2013-02-12/'
 nightsum_u = pd.DataFrame(requests.get(url_short).json()[1:])
 ```
 
-The master flat for this night can then be identified by trimming the night summary data frame, requiring `proc_type` = 'mastercal', `prod_type` = 'image', `ifilter` = 'u DECam c0006 3500.0 1000.0', and `obs_type` = 'dome flat'.
+The master flat for this night can then be identified by trimming the night summary data frame, requiring `proc_type` = 'mastercal', `prod_type` = 'image', `ifilter` = 'u DECam c0006 3500.0 1000.0', and `obs_type` = 'dome flat'. Using `archive_filename` and `url` from the the relevant row of the night summary data frame, we can then construct a `wget` command to download the u-band master flat:
+
+```
+wget https://astroarchive.noirlab.edu/api/retrieve/85b0f0932156012e3215df9160b58c6d/ -O 'flats_biases/tu1926715.fits.fz'
+```
