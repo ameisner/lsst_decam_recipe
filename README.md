@@ -639,7 +639,7 @@ for band in ['u', 'g', 'r', 'i', 'z', 'y']:
 res.write('cosmos_u_refcat-renamed.csv', format='csv')
 ```
 
-I found the renaming of the bands to simply 'u', 'g', ... rather than 'umag', 'gmag' to be necessary in order for `processCcd.py` to successfully access the correct reference catalog photometry columns during calibration (possibly there are configuration parameter changes that could be applied to make this renaming unnecessary; the renaming could also be done directly in the SQL query). You can then ingest this reference catalog with:
+I found the renaming of the bands to simply 'u', 'g', ... rather than 'umag', 'gmag', ... to be necessary in order for `processCcd.py` to successfully access the correct reference catalog photometry columns during calibration (possibly there are configuration parameter changes that could be applied to make this renaming unnecessary; the renaming could also be done directly in the SQL query). You can then ingest this reference catalog with:
 
 ```
 ingestReferenceCatalog.py my_ref_repo-renamed/ cosmos_u_refcat-renamed.csv --configfile my_ref-renamed.cfg
