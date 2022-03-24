@@ -604,3 +604,9 @@ The master flat for this night can then be identified by trimming the night summ
 ```
 wget https://astroarchive.noirlab.edu/api/retrieve/85b0f0932156012e3215df9160b58c6d/ -O 'flats_biases/tu1926715.fits.fz'
 ```
+
+The master bias for 2013-02-12 can be identified by trimming the night summary data frame with cuts requiring `obs_type` = 'zero', `prod_type` = 'image', and `proc_type` = 'mastercal'. Using `archive_filename` and `url` from the the relevant row of the night summary data frame, we can then construct a `wget` command to download the master bias:
+
+```
+wget https://astroarchive.noirlab.edu/api/retrieve/68d33ad5f5ee90a59219cfa26f3496f4/ -O 'flats_biases/tu1931853.fits.fz'
+```
