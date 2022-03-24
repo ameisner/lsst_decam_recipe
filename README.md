@@ -693,3 +693,7 @@ config.calibrate.photoRefObjLoader.filterMap={'u': 'u', 'Y': 'y'}
 ```
 
 This configuration file both points to the ingested NSC DR2 reference catalog and also maps `'u' : 'u'` in the `filterMap`. Possibly it might be better to do something like using u-band for the photometric calibration while using e.g., r-band for the astrometry.
+
+# r-band reduction example
+
+Needed to edit master calibration flat header to have OBSTYPE='dome flat' rather than OBSTYPE='zero'.
