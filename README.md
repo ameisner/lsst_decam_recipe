@@ -624,3 +624,5 @@ config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 ```
+
+It would perhaps be more satisfying to calibrate the u-band exposure with u-band reference catalog data, but PS1 does not offer u-band. To calibrate with a u-band reference catalog, we use NSC DR2.
