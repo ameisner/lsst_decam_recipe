@@ -556,7 +556,7 @@ config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
 config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'r'}
 ```
 
-In this case, VR is being mapped to r-band. It is also possible to instead map VR to g-band:
+In the above case, VR is being mapped to r-band. It is also possible to instead map VR to g-band:
 
 ```
 config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y', 'VR': 'g'}
