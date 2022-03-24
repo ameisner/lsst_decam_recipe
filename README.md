@@ -614,12 +614,13 @@ wget https://astroarchive.noirlab.edu/api/retrieve/68d33ad5f5ee90a59219cfa26f349
 We can then ingest the flat/bias, defects and raw data as usual. Since this sky location is at Dec > -30 deg and the LSST pipeline by default uses g-band as the reference filter to calibrate u-band, we can populate `DATA/ref_cats` with the standard PS1 shard files covering the relevant sky area. Then we can run the vanilla `processCcd.py` command:
 
 ```
-processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs_parallel --id --longlog -j 20
+processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -j 20
 ```
 
 The default filter mapping being used here is:
 
 ```
+$ processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -j 20 --show config |grep -i filtermap
 config.charImage.refObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 config.calibrate.astromRefObjLoader.filterMap={'u': 'g', 'Y': 'y'}
 config.calibrate.photoRefObjLoader.filterMap={'u': 'g', 'Y': 'y'}
