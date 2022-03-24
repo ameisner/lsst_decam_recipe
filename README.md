@@ -667,3 +667,29 @@ config.mag_column_list=['u', 'g', 'r', 'i', 'z', 'y']
 # A map of magnitude column name (key) to magnitude error column (value).
 config.mag_err_column_map={'u':'uerr', 'g':'gerr', 'r':'rerr', 'i':'ierr', 'z':'zerr', 'y':'yerr'}
 ```
+
+Now we can run calibration using NSC DR2 u-band as the reference data set:
+
+```
+processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog --configfile processCcd-overrides-nsc_dr2_renamed-filtermap.py -j 20
+```
+
+Where `processCcd-overrides-nsc_dr2_renamed-filtermap.py` contains:
+
+```
+from lsst.meas.algorithms import LoadIndexedReferenceObjectsTask
+config.calibrate.photoRefObjLoader.retarget(LoadIndexedReferenceObjectsTask)
+config.calibrate.photoRefObjLoader.ref_dataset_name = "nsc_dr2_object_rename"
+config.calibrate.astromRefObjLoader.retarget(LoadIndexedReferenceObjectsTask)
+config.calibrate.astromRefObjLoader.ref_dataset_name = "nsc_dr2_object_rename"
+
+config.calibrate.photoCal.photoCatName='nsc_dr2_object_rename'
+config.calibrate.connections.astromRefCat='nsc_dr2_object_rename'
+config.calibrate.connections.photoRefCat='nsc_dr2_object_rename'
+
+config.charImage.refObjLoader.filterMap={'u': 'u', 'Y': 'y'}
+config.calibrate.astromRefObjLoader.filterMap={'u': 'u', 'Y': 'y'}
+config.calibrate.photoRefObjLoader.filterMap={'u': 'u', 'Y': 'y'}
+```
+
+This configuration file both points to the ingested NSC DR2 reference catalog and also maps `'u' : 'u'` in the `filterMap`. Possibly it might be better to do something like using u-band for the photometric calibration while using e.g., r-band for the astrometry.
