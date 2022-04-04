@@ -696,4 +696,9 @@ This configuration file both points to the ingested NSC DR2 reference catalog ba
 
 ### appendix I: DECaLS r-band reduction example
 
-Needed to edit master calibration flat header to have OBSTYPE='dome flat' rather than OBSTYPE='zero'.
+An example raw DECam r-band image from DECaLS can be downloaded as:
+
+```
+wget https://astroarchive.noirlab.edu/api/retrieve/6ccecc118687b836b0fac3ffc5e768fb/ -O 'raw/DECam_00661619.fits.fz'
+```
+
