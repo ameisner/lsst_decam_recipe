@@ -70,7 +70,8 @@ rsync -arv $DATA/ap_verify_hits2015/preloaded/DECam/calib/*/cpFlat/g/*/cpFlat*.f
 Then ingest the staged flats/biases into the Butler repo:
 
 ```
-ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mode=link
+
+s.py DATA --calib DATA/CALIB flats_biases/*.fits --validity 999 --mode=link
 ```
 
 Possibly an appropriate regexp involving ``$DATA/ap_verify_hits2015/preloaded/DECam/calib`` in the ``ingestCalibs.py`` command above would eliminate the need for copying the flat/bias FITS files into a staging directory called ``flats_biases`` as is done here.
@@ -702,3 +703,27 @@ An example raw DECam r-band image from DECaLS can be downloaded as:
 wget https://astroarchive.noirlab.edu/api/retrieve/6ccecc118687b836b0fac3ffc5e768fb/ -O 'raw/DECam_00661619.fits.fz'
 ```
 
+This exposure has:
+
+```
+DTCALDAT= '2017-07-23        '  /  calendar date from observing schedule
+```
+
+And so using `CALDAT` = 2017-07-23 to query the Astro Data Archive `/short` API, we can identify and download the relevant r-band master flat and 
+
+```
+wget https://astroarchive.noirlab.edu/api/retrieve/751175f9d7b0fef14ac16f9a3ee57a87/ -O 'flats_biases/c4d_170723_194252_zci_v1.fits.fz'
+wget https://astroarchive.noirlab.edu/api/retrieve/c6d50c09e6e84800ce11613274ebe908/ -O 'flats_biases/c4d_170723_191439_zci_v1.fits.fz'
+```
+
+One oddity for the night of `CALDAT` = 2017-07-23 is that the r-band master dome flat `c4d_170723_194252_zci_v1.fits.fz` header incorrectly specifies `OBSTYPE` = 'zero' (and the file name also contains `_zci_` as if this were a master zero rather than a master flat). In order to get `ingestCalibs.py` to successfully/correctly ingest both the r-band master flat and the master bias for this night, we need to edit the header of the r-band master flat so that it has the correct `OBSTYPE` value:
+
+```
+import astropy.io.fits as fits
+
+hdul = fits.open('flats_biases/c4d_170723_194252_zci_v1.fits.fz')
+
+hdul[0].header['OBSTYPE'] = 'dome flat'
+
+hdul.writeto('flats_biases_repaired/c4d_170723_194252_zci_v1.fits.fz')
+```
