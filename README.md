@@ -546,7 +546,7 @@ If you don't use the custom `validityUntilSuperseded` configuration mentioned ab
 RuntimeError: Unable to retrieve cpBias for {'date': '2018-09-05', 'filter': 'g', 'visit': 769126, 'hdu': 1, 'ccdnum': 25, 'object': 'DECaLS_57359_g'}: No locations for get: datasetType:cpBias dataId:DataId(initialdata={'date': '2018-09-05', 'filter': 'g', 'visit': 769126, 'hdu': 1, 'ccdnum': 25, 'object': 'DECaLS_57359_g'}, tag=set()).
 ```
 
-### Appendix G: DECam VR data
+### appendix G: DECam VR data
 
 In order to calibrate DECam VR data with `processCcd.py`, one needs to specify which filter to use from within the reference catalog. This can be accomplished by creating a custom configuration Python file with VR added to the following dictionaries:
 
@@ -570,7 +570,7 @@ If these configuration options are specified in a file called `config-filtermap.
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -C config-filtermap.py -j 20
 ```
 
-### Appendix H: DECam u band in COSMOS
+### appendix H: DECam u band in COSMOS
 
 Download the following raw DECam u-band exposure in/near the COSMOS region:
 
