@@ -709,7 +709,7 @@ This exposure has:
 DTCALDAT= '2017-07-23        '  /  calendar date from observing schedule
 ```
 
-And so using `CALDAT` = 2017-07-23 to query the Astro Data Archive `/short` API, we can identify and download the relevant r-band master flat and 
+And so using `CALDAT` = 2017-07-23 to query the Astro Data Archive `/short` API, we can identify and download the relevant r-band master flat and bias:
 
 ```
 wget https://astroarchive.noirlab.edu/api/retrieve/751175f9d7b0fef14ac16f9a3ee57a87/ -O 'flats_biases/c4d_170723_194252_zci_v1.fits.fz'
