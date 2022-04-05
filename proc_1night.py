@@ -168,7 +168,9 @@ def write_launch_script(outname):
     with open(outname, 'wb') as f:
         f.write(cmd.encode('ascii'))
 
-def _proc(caldat, limit=None):
+def _proc(caldat, limit=None, staging_script_name='stage.sh',
+          launch_script_name='launch.sh'):
+
     print('WORKING ON NIGHT ' + caldat)
 
     nightsum = query_night('2018-09-05')
@@ -187,8 +189,8 @@ def _proc(caldat, limit=None):
     download_ps1_shards(np.array(raw['ra_min']),
                         np.array(raw['dec_min']))
 
-    write_staging_script()
-    write_launch_script()
+    write_staging_script(staging_script_name)
+    write_launch_script(launch_script_name)
     
 if __name__ == "__main__":
     descr = 'process a night of raw DECam data'
@@ -224,4 +226,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    _proc(args.caldat[0], limit=args.limit)
+    _proc(args.caldat[0], limit=args.limit,
+          staging_script_name=args.staging_script_name,
+          launch_script_name=args.launch_script_name)
