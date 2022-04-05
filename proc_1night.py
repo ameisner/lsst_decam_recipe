@@ -8,6 +8,7 @@ import os
 import pandas as pd
 from astropy.table import vstack
 import numpy as np
+import stat
 
 def query_night(night):
     # query the /short api
@@ -161,12 +162,20 @@ def write_staging_script(outname):
     with open(outname, 'wb') as f:
         f.write(_cmds.encode('ascii'))
 
+    add_exec_permission(outname)
+
 def write_launch_script(outname):
 
     cmd = 'processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -j 20'
 
     with open(outname, 'wb') as f:
         f.write(cmd.encode('ascii'))
+
+    add_exec_permission(outname)
+
+def add_exec_permission(fname):
+    st = os.stat(fname)
+    os.chmod(fname, st.st_mode | stat.S_IXUSR)
 
 def _proc(caldat, limit=None, staging_script_name='stage.sh',
           launch_script_name='launch.sh'):
