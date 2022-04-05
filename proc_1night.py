@@ -9,6 +9,7 @@ import pandas as pd
 from astropy.table import vstack
 import numpy as np
 import stat
+from multiprocessing import Pool
 
 def query_night(night):
     # query the /short api
@@ -92,7 +93,11 @@ def download_calibs(df):
 
     download_images(df, outdir)
 
-def download_ps1_shards(ras, decs):
+def download_1shard(url, outname):
+    r = requests.get(url, allow_redirects=True)
+    open(outname, 'wb').write(r.content)
+
+def download_ps1_shards(ras, decs, nmp=8):
     import get_shards
 
     # check that ras, decs have same number of elements?
@@ -122,10 +127,9 @@ def download_ps1_shards(ras, decs):
         _name = str(shard) + '.fits'
         url = os.path.join(base_url, _name)
         print(url)
-
         outname = os.path.join(outdir, _name)
-        r = requests.get(url, allow_redirects=True)
-        open(outname, 'wb').write(r.content)
+        download_1shard(url, outname)
+
 
 # get list of files from /short API
 # get unique list of filters (maybe not strictly necessary)
