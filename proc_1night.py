@@ -186,11 +186,11 @@ def _proc(caldat, limit=None, staging_script_name='stage.sh',
 
     download_calibs(calib)
 
-    download_ps1_shards(np.array(raw['ra_min']),
-                        np.array(raw['dec_min']))
-
     write_staging_script(staging_script_name)
     write_launch_script(launch_script_name)
+
+    download_ps1_shards(np.array(raw['ra_min']),
+                        np.array(raw['dec_min']))
     
 if __name__ == "__main__":
     descr = 'process a night of raw DECam data'
