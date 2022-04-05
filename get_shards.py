@@ -1,4 +1,3 @@
-
 from lsst.meas.algorithms.htmIndexer import HtmIndexer
 from lsst.geom import degrees
 from lsst.geom import SpherePoint
