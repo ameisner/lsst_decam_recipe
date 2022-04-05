@@ -17,7 +17,7 @@ def query_night(night):
 
     return nightsum
 
-def raw_science_frames(nightsum, min_exptime_s=1.0):
+def select_raw_science(nightsum, min_exptime_s=1.0):
 
     # nightsum is a pandas dataframe of the sort that would be returned
     #     by query_night
@@ -35,6 +35,17 @@ def raw_science_frames(nightsum, min_exptime_s=1.0):
 
     # what to do for edge case in which nothing is retained?
     result = nightsum[keep]
+    return result
+
+def select_mastercal(nightsum):
+
+    keep = (nightsum['proc_type'] == 'mastercal') & \
+           (nightsum['prod_type'] == 'image') & \
+           ((nightsum['obs_type'] == 'dome flat') | \
+            (nightsum['obs_type'] == 'zero'))
+
+    result = nightsum[keep]
+
     return result
 
 def download_images(df, outdir):
@@ -60,10 +71,10 @@ def download_images(df, outdir):
         open(outname, 'wb').write(r.content)
 
 def download_raw_science(df):
-    pass
+    download_images(df, 'raw')
 
 def download_calibs(df):
-    pass
+    download_images(df, 'flats_biases')
 
 def download_ps1_shards(ras, decs):
     import get_shards
