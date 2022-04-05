@@ -48,7 +48,6 @@ def download_images(df, outdir):
     for i in range(len(df)):
         print(i+1, ' of ', len(df))
         url = df['url'].iloc[i]
-        r = requests.get(url, allow_redirects=True)
 
         outname = os.path.join(outdir,
                                os.path.basename(df['archive_filename'].iloc[i]))
@@ -56,8 +55,10 @@ def download_images(df, outdir):
         print(url, outname)
 
         assert(not os.path.exists(outname))
+
+        r = requests.get(url, allow_redirects=True)
         open(outname, 'wb').write(r.content)
-    
+
 def download_raw_science(df):
     pass
 
