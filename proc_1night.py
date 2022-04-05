@@ -76,10 +76,20 @@ def download_images(df, outdir):
         open(outname, 'wb').write(r.content)
 
 def download_raw_science(df):
-    download_images(df, 'raw')
+    print('DOWNLOADING RAW SCIENCE FRAMES')
+    outdir = 'raw'
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+
+    download_images(df, outdir)
 
 def download_calibs(df):
-    download_images(df, 'flats_biases')
+    print('DOWNLOADING NIGHTLY MASTER CALIBRATIONS')
+    outdir = 'flats_biases'
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+
+    download_images(df, outdir)
 
 def download_ps1_shards(ras, decs):
     import get_shards
@@ -129,6 +139,8 @@ def download_ps1_shards(ras, decs):
 # use DECaLS night = 2018-09-05 as a test case
 
 def _proc(caldat, limit=None):
+    print('WORKING ON NIGHT ' + caldat)
+
     nightsum = query_night('2018-09-05')
     
     raw = select_raw_science(nightsum)
@@ -144,8 +156,6 @@ def _proc(caldat, limit=None):
 
     download_ps1_shards(np.array(raw['ra_min']),
                         np.array(raw['dec_min']))
-
-    
 
 if __name__ == "__main__":
     descr = 'process a night of raw DECam data'
