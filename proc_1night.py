@@ -37,6 +37,9 @@ def select_raw_science(nightsum, min_exptime_s=1.0):
 
     # what to do for edge case in which nothing is retained?
     result = nightsum[keep]
+
+    result = result.sort_values('original_filename')
+
     return result
 
 def select_mastercal(nightsum):
@@ -113,10 +116,6 @@ def download_ps1_shards(ras, decs):
         r = requests.get(url, allow_redirects=True)
         open(outname, 'wb').write(r.content)
 
-        
-
-    
-        
 # get list of files from /short API
 # get unique list of filters (maybe not strictly necessary)
 # download/ingest the calibs (flats) for those filters
@@ -128,6 +127,25 @@ def download_ps1_shards(ras, decs):
 #    download those from princeton server
 # create script for building butler repo and also the processCcd.py command
 # use DECaLS night = 2018-09-05 as a test case
+
+def _proc(caldat, limit=None):
+    nightsum = query_night('2018-09-05')
+    
+    raw = select_raw_science(nightsum)
+
+    if limit is not None:
+        raw = raw[0:limit]
+
+    calib = select_mastercal(nightsum)
+
+    download_raw_science(raw)
+
+    download_calibs(calib)
+
+    download_ps1_shards(np.array(raw['ra_min']),
+                        np.array(raw['dec_min']))
+
+    
 
 if __name__ == "__main__":
     descr = 'process a night of raw DECam data'
@@ -149,6 +167,9 @@ if __name__ == "__main__":
     parser.add_argument('--multiproc', default=None, type=int,
                         help="number of threads for multiprocessing")
 
+    parser.add_argument('--limit', default=None, type=int,
+                        help="process only first limit exposures")
+    
     # I guess filter here should be an abbreviated name like 'u', 'g', 'r', ...
     # rather than the full filter name?
     parser.add_argument('--filter', default=None, type=str,
@@ -157,3 +178,7 @@ if __name__ == "__main__":
     # PROPID format?
     parser.add_argument('--propid', default=None, type=str,
                         help="only process raw science data with this propid")
+
+    args = parser.parse_args()
+
+    _proc(args.caldat[0], limit=args.limit)
