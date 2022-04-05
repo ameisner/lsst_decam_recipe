@@ -138,8 +138,28 @@ def download_ps1_shards(ras, decs):
 # create script for building butler repo and also the processCcd.py command
 # use DECaLS night = 2018-09-05 as a test case
 
-def write_staging_script():
-    pass
+def write_staging_script(outname):
+    cmds = []
+
+    cmds.append('mkdir DATA')
+    cmds.append('mkdir DATA/CALIB')
+
+    cmds.append('echo lsst.obs.decam.DecamMapper > DATA/_mapper')
+
+    cmds.append('ingestImagesDecam.py DATA --filetype raw raw/*.fz --mode=link')
+
+    cmds.append('ingestCalibs.py DATA --calib DATA/CALIB flats_biases/*.fits.fz --validity 999 --mode=link')
+
+    cmds.append('ingestDefects.py DATA /data0/ameisner/lsst_stack_v19_0_0/stack/miniconda3-4.7.10-4d7b902/Linux64/obs_decam_data/19.0.0/decam/defects --calib DATA/CALIB')
+
+    cmds.append('ln -s ps1_pv3_3pi_20170110 DATA/ref_cats/ps1_pv3_3pi_20170110')
+
+    _cmds = ''
+    for cmd in cmds:
+        _cmds += cmd + '\n'
+
+    with open(outname, 'wb') as f:
+        f.write(_cmds.encode('ascii'))
 
 def write_launch_script(outname):
 
