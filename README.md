@@ -728,7 +728,7 @@ hdul[0].header['OBSTYPE'] = 'dome flat'
 hdul.writeto('flats_biases_repaired/c4d_170723_194252_zci_v1.fits.fz')
 ```
 
-This exposure is centered at (RA, DEC) ~ (354, -3), so the reference catalogs can be taken care of by simply making sure that the usual `DATA/ref_cats/ps1_pv3_3pi_20170110` directory contains the appropriate list of standard PS1 shard files. Standard Butler repo setup suffices and a standard call to `processCcd.py` can correspondingly be used:
+This exposure is centered at (RA, Dec) ~ (354, -3), so the reference catalogs can be taken care of by simply making sure that the usual `DATA/ref_cats/ps1_pv3_3pi_20170110` directory contains the appropriate list of standard PS1 shard files. Standard Butler repo setup suffices and a standard call to `processCcd.py` can correspondingly be used:
 
 ```
 processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog
