@@ -6,6 +6,8 @@ import full_decam_filter_name
 import json
 import os
 import pandas as pd
+from astropy.table import vstack
+import numpy as np
 
 def query_night(night):
     # query the /short api
@@ -79,9 +81,42 @@ def download_calibs(df):
 def download_ps1_shards(ras, decs):
     import get_shards
 
+    # check that ras, decs have same number of elements?
+
     # get shards list for each ra, dec then do downloads for the
     # unique set
 
+    margin = 0.1 # deg, not sure...
+    tables = []
+    for i in range(len(ras)):
+        shards = get_shards.getShards_decam_pointing(ras[i], decs[i], depth=7,
+                                                     margin=margin)
+        tables.append(shards)
+
+    table = vstack(tables)
+
+    shards = np.unique(table['shard'])
+
+    base_url = 'http://tigress-web.princeton.edu/~pprice/ps1_pv3_3pi_20170110/'
+
+    outdir = 'ps1_pv3_3pi_20170110'
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+
+    for i, shard in enumerate(shards):
+        print(i+1, ' of ', len(shards))
+        _name = str(shard) + '.fits'
+        url = os.path.join(base_url, _name)
+        print(url)
+
+        outname = os.path.join(outdir, _name)
+        r = requests.get(url, allow_redirects=True)
+        open(outname, 'wb').write(r.content)
+
+        
+
+    
+        
 # get list of files from /short API
 # get unique list of filters (maybe not strictly necessary)
 # download/ingest the calibs (flats) for those filters
