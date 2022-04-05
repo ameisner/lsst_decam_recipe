@@ -138,6 +138,16 @@ def download_ps1_shards(ras, decs):
 # create script for building butler repo and also the processCcd.py command
 # use DECaLS night = 2018-09-05 as a test case
 
+def write_staging_script():
+    pass
+
+def write_launch_script(outname):
+
+    cmd = 'processCcd.py DATA --calib DATA/CALIB --rerun processCcdOutputs --id --longlog -j 20'
+
+    with open(outname, 'wb') as f:
+        f.write(cmd.encode('ascii'))
+
 def _proc(caldat, limit=None):
     print('WORKING ON NIGHT ' + caldat)
 
@@ -157,6 +167,9 @@ def _proc(caldat, limit=None):
     download_ps1_shards(np.array(raw['ra_min']),
                         np.array(raw['dec_min']))
 
+    write_staging_script()
+    write_launch_script()
+    
 if __name__ == "__main__":
     descr = 'process a night of raw DECam data'
 
