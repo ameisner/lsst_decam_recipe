@@ -23,10 +23,10 @@ def _run(pid):
             tokens = result.split()
             assert(len(tokens) == 3)
             assert(tokens[2] == 'kB')
-            if (ct % 100) == 0:
-                print(result.replace('\n', ''))
             this_peakmem_gb = float(tokens[1])*(1.0e3)/(1.0e9)
             peakmem_gb = max(peakmem_gb, this_peakmem_gb)
+            if (ct % 10) == 0:
+                print(result.replace('\n', ''), ' = ', '{:.2f}'.format(peakmem_gb), ' GB')
             ct += 1
         else:
             break
