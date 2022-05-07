@@ -26,7 +26,7 @@ def _run(pid):
             this_peakmem_gb = float(tokens[1])*(1.0e3)/(1.0e9)
             peakmem_gb = max(peakmem_gb, this_peakmem_gb)
             if (ct % 10) == 0:
-                print(result.replace('\n', ''), ' = ', '{:.2f}'.format(peakmem_gb), ' GB')
+                print(result.replace('\n', ''), ' = ', '{:.2f}'.format(peakmem_gb), ' GB, for PID = ', pid)
             ct += 1
         else:
             break
