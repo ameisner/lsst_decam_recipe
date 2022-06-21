@@ -85,7 +85,12 @@ def barchart_by_ccdnum(basedir, outname=None):
     else:
         plt.show()
 
-def _test(outname=None):
+def _mono_decals_v6_barchart():
     basedir = '/data0/ameisner/mono_decals/v6/DATA/rerun/processCcdOutputs'
 
-    barchart_by_ccdnum(basedir, outname=outname)
+    barchart_by_ccdnum(basedir, outname='mono_decals_v6-barchart.png')
+
+def _mono_decals_v5_barchart():
+    basedir = '/data0/ameisner/mono_decals/v5/DATA/rerun/processCcdOutputs'
+
+    barchart_by_ccdnum(basedir, outname='mono_decals_v5-barchart.png')
