@@ -88,5 +88,9 @@ def _v6_missing_fp_plots():
         # construct raw file name
         fname_raw = _get_fname_raw(expnum)
         rerun_dir = '/data0/ameisner/mono_decals/v6/DATA/rerun/processCcdOutputs'
+
+        h = fits.getheader(fname_raw)
+        caldat = h['DTCALDAT']
+        title_extra = 'night = ' + caldat
         plotting.outputs_fp_map(fname_raw, rerun_dir, save=False, 
-                                outname_extra='', title_extra='')
+                                outname_extra='', title_extra=title_extra)
