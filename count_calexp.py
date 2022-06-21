@@ -2,6 +2,7 @@ import glob
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+import decam_reduce.util as util
 import pandas as pd
 
 def get_num_exp(basedir):
@@ -88,6 +89,7 @@ def barchart_by_ccdnum(basedir, outname=None, return_df=False):
 
     df = pd.DataFrame()
     df['CCDNUM'] = np.arange(1, 63)
+    df['CCDNAME'] = [util.ccdnum_to_ccdname(_n) for _n in df['CCDNUM']]
     df['n_failures'] = counts_bad
 
     if return_df:
