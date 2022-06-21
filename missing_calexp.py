@@ -5,6 +5,7 @@ import numpy as np
 import decam_reduce.util as util
 import pandas as pd
 import astropy.io.fits as fits
+import decam_reduce.plotting as plotting
 
 def missing_calexp(basedir):
     # get list of exposures
@@ -66,3 +67,26 @@ def _test():
     print()
     print('unique EXPNUM with missing CCDs :', np.unique(df['expnum']))
     return df
+
+
+def _get_fname_raw(expnum):
+    raw_dir = '/data0/ameisner/mono_decals/v6/raw'
+    flist_raw = glob.glob(os.path.join(raw_dir, '*.fits.fz'))
+
+    for f in flist_raw:
+        h = fits.getheader(f)
+        if h['EXPNUM'] == expnum:
+            return f
+
+def _v6_missing_fp_plots():
+
+    df = _test()
+
+    expnums = np.unique(df['expnum'])
+
+    for expnum in expnums:
+        # construct raw file name
+        fname_raw = _get_fname_raw(expnum)
+        rerun_dir = '/data0/ameisner/mono_decals/v6/DATA/rerun/processCcdOutputs'
+        plotting.outputs_fp_map(fname_raw, rerun_dir, save=False, 
+                                outname_extra='', title_extra='')
