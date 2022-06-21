@@ -2,11 +2,12 @@ import glob
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+import pandas as pd
 
 def get_num_exp(basedir):
     pass
 
-def barchart_by_ccdnum(basedir, outname=None):
+def barchart_by_ccdnum(basedir, outname=None, return_df=False):
     """
     Bar chart of number of exposures with calexp output for each CCDNUM.
 
@@ -85,10 +86,21 @@ def barchart_by_ccdnum(basedir, outname=None):
     else:
         plt.show()
 
+    df = pd.DataFrame()
+    df['CCDNUM'] = np.arange(1, 63)
+    df['n_failures'] = counts_bad
+
+    if return_df:
+        return df
+    
+
 def _mono_decals_v6_barchart():
     basedir = '/data0/ameisner/mono_decals/v6/DATA/rerun/processCcdOutputs'
 
-    barchart_by_ccdnum(basedir, outname='mono_decals_v6-barchart.png')
+    df = barchart_by_ccdnum(basedir, outname='mono_decals_v6-barchart.png',
+                            return_df=True)
+
+    return df
 
 def _mono_decals_v5_barchart():
     basedir = '/data0/ameisner/mono_decals/v5/DATA/rerun/processCcdOutputs'
