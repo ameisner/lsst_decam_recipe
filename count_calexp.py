@@ -6,7 +6,7 @@ import numpy as np
 def get_num_exp(basedir):
     pass
 
-def barchart_by_ccdnum(basedir):
+def barchart_by_ccdnum(basedir, outname=None):
     """
     Bar chart of number of exposures with calexp output for each CCDNUM.
 
@@ -78,9 +78,14 @@ def barchart_by_ccdnum(basedir):
     plt.xlabel('CCDNUM')
     plt.ylabel('# of CCDs')
 
-    plt.show()
+    if outname is not None:
+        # assume outname has a valid image file type suffix
+        plt.savefig(outname, dpi=200, bbox_inches='tight')
+        plt.cla()
+    else:
+        plt.show()
 
-def _test():
+def _test(outname=None):
     basedir = '/data0/ameisner/mono_decals/v6/DATA/rerun/processCcdOutputs'
 
-    barchart_by_ccdnum(basedir)
+    barchart_by_ccdnum(basedir, outname=outname)
