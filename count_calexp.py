@@ -6,9 +6,9 @@ import numpy as np
 def get_num_exp(basedir):
     pass
 
-def hist_by_ccdnum(basedir):
+def barchart_by_ccdnum(basedir):
     """
-    Histogram of number of exposures with calexp output for each CCDNUM.
+    Bar chart of number of exposures with calexp output for each CCDNUM.
 
     Notes
     -----
@@ -37,14 +37,15 @@ def hist_by_ccdnum(basedir):
         ccdnums[i] = int(tokens[1][0:2])
 
     bins = np.arange(63) + 0.5
-    counts_good, bins, _ = plt.hist(ccdnums, bins)
+    #counts_good, bins, _ = plt.hist(ccdnums, bins)
+    counts_good, bins = np.histogram(ccdnums, bins)
     print(counts_good)
     print(bins)
     assert(np.sum(counts_good) == len(flist_calexp))
 
     counts_bad = n_exp - counts_good
 
-    plt.cla()
+    #plt.cla()
 
     # stacked bar chart
 
@@ -82,4 +83,4 @@ def hist_by_ccdnum(basedir):
 def _test():
     basedir = '/data0/ameisner/mono_decals/v6/DATA/rerun/processCcdOutputs'
 
-    hist_by_ccdnum(basedir)
+    barchart_by_ccdnum(basedir)
