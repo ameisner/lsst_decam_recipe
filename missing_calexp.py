@@ -92,5 +92,5 @@ def _v6_missing_fp_plots():
         h = fits.getheader(fname_raw)
         caldat = h['DTCALDAT']
         title_extra = 'night = ' + caldat
-        plotting.outputs_fp_map(fname_raw, rerun_dir, save=False, 
+        plotting.outputs_fp_map(fname_raw, rerun_dir, save=True, 
                                 outname_extra='', title_extra=title_extra)
