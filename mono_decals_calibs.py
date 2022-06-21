@@ -12,7 +12,7 @@ import os
 
 t = Table()
 
-dir = '/global/cscratch1/sd/ameisner/mono_decals/flats_biases'
+dir = '/data0/ameisner/mono_decals/v3/flats_biases'
 
 flist = glob.glob(os.path.join(dir, '*.fits*'))
 
